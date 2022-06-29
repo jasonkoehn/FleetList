@@ -9,19 +9,7 @@ import SwiftUI
 
 struct AirlineView: View {
     var body: some View {
-        NavigationView {
-            List {
-                Text("kaldjsbvhsaoi")
-                Text("kaldjsbvhsaoi")
-                Text("kaldjsbvhsaoi")
-                Text("kaldjsbvhsaoi")
-                Text("kaldjsbvhsaoi")
-                Text("kaldjsbvhsaoi")
-                Text("kaldjsbvhsaoi")
-                Text("kaldjsbvhsaoi")
-                Text("kaldjsbvhsaoi")
-            }
-        }
+        FleetView()
     }
 }
 

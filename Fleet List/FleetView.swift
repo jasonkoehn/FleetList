@@ -15,30 +15,40 @@ struct FleetView: View {
     @State private var callsign = ""
     var body: some View {
         NavigationView {
-            List {
-                Section {
-                    Text(airlineName)
-                        .font(.title)
-                    HStack {
-                        Spacer()
-                        Text(iata)
-                        Spacer()
-                        Text(icao)
-                        Spacer()
-                        Text(callsign)
-                        Spacer()
+            VStack {
+                HStack {
+                    Spacer()
+                    Text("IATA")
+                        .italic()
+                        .font(.subheadline)
+                    Text(iata)
+                    Spacer()
+                    Text("ICOA")
+                        .italic()
+                        .font(.subheadline)
+                    Text(icao)
+                    Spacer()
+                    Text("Callsign")
+                        .italic()
+                        .font(.subheadline)
+                    Text(callsign)
+                    Spacer()
+                }
+                List {
+                    ForEach(results, id: \.hex) { item in
+                        NavigationLink(destination: {Text(item.registration)}) {
+                            HStack {
+                                Text(item.registration)
+                                    .font(.system(size: 25))
+                                Text(item.type)
+                            }
+                        }
                     }
                 }
-                ForEach(results, id: \.hex) { item in
-                    VStack(alignment: .leading) {
-                        Text(item.registration)
-                            .font(.title)
-                    }
+                .navigationTitle(airlineName)
+                .task {
+                    await loadData()
                 }
-            }
-            .navigationBarTitle(Text(airlineName))
-            .task {
-                await loadData()
             }
         }
     }
@@ -73,6 +83,7 @@ struct Response: Codable {
 struct Aircraft: Codable {
     var hex: String
     var registration: String
+    var type: String
 }
 
 struct FleetView_Previews: PreviewProvider {
