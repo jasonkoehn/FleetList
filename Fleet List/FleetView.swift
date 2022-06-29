@@ -13,47 +13,46 @@ struct FleetView: View {
     @State private var iata = ""
     @State private var icao = ""
     @State private var callsign = ""
+    @State var airlineurl: String
     var body: some View {
-        NavigationView {
-            VStack {
-                HStack {
-                    Spacer()
-                    Text("IATA")
-                        .italic()
-                        .font(.subheadline)
-                    Text(iata)
-                    Spacer()
-                    Text("ICOA")
-                        .italic()
-                        .font(.subheadline)
-                    Text(icao)
-                    Spacer()
-                    Text("Callsign")
-                        .italic()
-                        .font(.subheadline)
-                    Text(callsign)
-                    Spacer()
-                }
-                List {
-                    ForEach(results, id: \.hex) { item in
-                        NavigationLink(destination: {Text(item.registration)}) {
-                            HStack {
-                                Text(item.registration)
-                                    .font(.system(size: 25))
-                                Text(item.type)
-                            }
+        VStack {
+            HStack {
+                Spacer()
+                Text("IATA")
+                    .italic()
+                    .font(.subheadline)
+                Text(iata)
+                Spacer()
+                Text("ICOA")
+                    .italic()
+                    .font(.subheadline)
+                Text(icao)
+                Spacer()
+                Text("Callsign")
+                    .italic()
+                    .font(.subheadline)
+                Text(callsign)
+                Spacer()
+            }
+            List {
+                ForEach(results, id: \.hex) { item in
+                    NavigationLink(destination: {Text(item.registration)}) {
+                        HStack {
+                            Text(item.registration)
+                                .font(.system(size: 25))
+                            Text(item.type)
                         }
                     }
                 }
-                .navigationTitle(airlineName)
-                .task {
-                    await loadData()
-                }
+            }
+            .navigationTitle(airlineName)
+            .task {
+                await loadData()
             }
         }
     }
     func loadData() async {
-        guard let url = URL(string: "https://jasonkoehn.github.io/AirlineData/BreezeAirways.json") else {
+        guard let url = URL(string: airlineurl) else {
             print("Invalid URL")
             return
         }
@@ -88,6 +87,6 @@ struct Aircraft: Codable {
 
 struct FleetView_Previews: PreviewProvider {
     static var previews: some View {
-        FleetView()
+        FleetView(airlineurl: "")
     }
 }
