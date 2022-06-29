@@ -9,7 +9,19 @@ import SwiftUI
 
 struct AirlineView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List {
+                Text("kaldjsbvhsaoi")
+                Text("kaldjsbvhsaoi")
+                Text("kaldjsbvhsaoi")
+                Text("kaldjsbvhsaoi")
+                Text("kaldjsbvhsaoi")
+                Text("kaldjsbvhsaoi")
+                Text("kaldjsbvhsaoi")
+                Text("kaldjsbvhsaoi")
+                Text("kaldjsbvhsaoi")
+            }
+        }
     }
 }
 
