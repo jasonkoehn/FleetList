@@ -12,10 +12,14 @@ struct AirlineView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(airlines, id: \.name) { item in
-                    NavigationLink(destination: {FleetView(airlineurl: item.data_url)}) {
-                        Text(item.name)
-                            .font(.system(size: 25))
+                ForEach(airlines, id: \.name) { airlines in
+                    NavigationLink(destination: {FleetView(airlineurl: airlines.data_url)}) {
+                        HStack {
+                            Image(airlines.name)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+        
+                        }
                     }
                 }
             }
