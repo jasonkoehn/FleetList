@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		87353045286CDBFD007A9160 /* AircraftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87353044286CDBFD007A9160 /* AircraftView.swift */; };
 		875A7F00286CA26400BA669B /* AirlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875A7EFF286CA26400BA669B /* AirlineView.swift */; };
 		875A7F02286CA27100BA669B /* FleetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875A7F01286CA27100BA669B /* FleetView.swift */; };
 		87782077286C9E9E00614B24 /* Fleet_ListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87782076286C9E9E00614B24 /* Fleet_ListApp.swift */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		87353044286CDBFD007A9160 /* AircraftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AircraftView.swift; sourceTree = "<group>"; };
 		875A7EFF286CA26400BA669B /* AirlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirlineView.swift; sourceTree = "<group>"; };
 		875A7F01286CA27100BA669B /* FleetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleetView.swift; sourceTree = "<group>"; };
 		87782073286C9E9E00614B24 /* Fleet List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fleet List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +59,7 @@
 				87782076286C9E9E00614B24 /* Fleet_ListApp.swift */,
 				875A7EFF286CA26400BA669B /* AirlineView.swift */,
 				875A7F01286CA27100BA669B /* FleetView.swift */,
+				87353044286CDBFD007A9160 /* AircraftView.swift */,
 				8778207A286C9E9F00614B24 /* Assets.xcassets */,
 				8778207C286C9E9F00614B24 /* Fleet_List.entitlements */,
 				8778207D286C9E9F00614B24 /* Preview Content */,
@@ -142,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87353045286CDBFD007A9160 /* AircraftView.swift in Sources */,
 				875A7F02286CA27100BA669B /* FleetView.swift in Sources */,
 				875A7F00286CA26400BA669B /* AirlineView.swift in Sources */,
 				87782077286C9E9E00614B24 /* Fleet_ListApp.swift in Sources */,
