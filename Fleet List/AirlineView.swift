@@ -15,10 +15,26 @@ struct AirlineView: View {
                 ForEach(airlines, id: \.name) { airlines in
                     NavigationLink(destination: {FleetView(airlineurl: airlines.data_url)}) {
                         HStack {
-                            Image(airlines.name)
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .cornerRadius(3)
+                            AsyncImage(url: URL(string: "jasonkoehn.github.io/AirlineData/SouthwestAirlines.png")) { phase in
+                                switch phase {
+                                case .success(let image):
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
+                                default:
+                                    VStack {
+                                        Image(systemName: "books.vertical")
+                                            .font(.largeTitle)
+                                            .padding(95)
+                                    }
+                                    .frame(width: 40, height: 40)
+                                    .background(Color.gray.opacity(0.5))
+                                }
+                            }
+                            //                            Image(airlines.name)
+                            //                                .resizable()
+                            //                                .frame(width: 40, height: 40)
+                            //                                .cornerRadius(3)
                             Text(airlines.name)
                                 .font(.system(size: 25))
                         }
