@@ -17,8 +17,10 @@ struct AirlineView: View {
                         HStack {
                             Image(airlines.name)
                                 .resizable()
-                                .aspectRatio(contentMode: .fit)
-        
+                                .frame(width: 40, height: 40)
+                                .cornerRadius(3)
+                            Text(airlines.name)
+                                .font(.system(size: 25))
                         }
                     }
                 }
@@ -52,6 +54,8 @@ struct AirlinesJSON: Codable {
 struct Airlines: Codable {
     var name: String
     var data_url: String
+    var picture_url: String
+    var square_url: String
 }
 
 struct AirlineView_Previews: PreviewProvider {
