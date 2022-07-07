@@ -13,6 +13,7 @@
 		87782077286C9E9E00614B24 /* Fleet_ListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87782076286C9E9E00614B24 /* Fleet_ListApp.swift */; };
 		8778207B286C9E9F00614B24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8778207A286C9E9F00614B24 /* Assets.xcassets */; };
 		8778207F286C9E9F00614B24 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8778207E286C9E9F00614B24 /* Preview Assets.xcassets */; };
+		87D4FD9C287732DE00CEDD42 /* APIDecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D4FD9B287732DE00CEDD42 /* APIDecode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		8778207A286C9E9F00614B24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8778207C286C9E9F00614B24 /* Fleet_List.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fleet_List.entitlements; sourceTree = "<group>"; };
 		8778207E286C9E9F00614B24 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		87D4FD9B287732DE00CEDD42 /* APIDecode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDecode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				875A7EFF286CA26400BA669B /* AirlineView.swift */,
 				875A7F01286CA27100BA669B /* FleetView.swift */,
 				87353044286CDBFD007A9160 /* AircraftView.swift */,
+				87D4FD9B287732DE00CEDD42 /* APIDecode.swift */,
 				8778207A286C9E9F00614B24 /* Assets.xcassets */,
 				8778207C286C9E9F00614B24 /* Fleet_List.entitlements */,
 				8778207D286C9E9F00614B24 /* Preview Content */,
@@ -149,6 +152,7 @@
 				875A7F02286CA27100BA669B /* FleetView.swift in Sources */,
 				875A7F00286CA26400BA669B /* AirlineView.swift in Sources */,
 				87782077286C9E9E00614B24 /* Fleet_ListApp.swift in Sources */,
+				87D4FD9C287732DE00CEDD42 /* APIDecode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

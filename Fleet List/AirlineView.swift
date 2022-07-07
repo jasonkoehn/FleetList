@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct AirlineView: View {
-    @State private var airlines = [Airlines]()
+    @State var airlines: [Airlines] = []
     var body: some View {
         NavigationView {
             List {
                 ForEach(airlines, id: \.name) { airlines in
-                    NavigationLink(destination: {FleetView(airlineurl: airlines.data_url)}) {
+                    NavigationLink(destination: {FleetView(name: airlines.name, website: airlines.website, iata: airlines.iata, icao: airlines.icao, callsign: airlines.callsign, fleet_size: airlines.fleet_size, data_url: airlines.data_url)}) {
                         HStack {
-                            Image(airlines.name)
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .cornerRadius(3)
                             Text(airlines.name)
                                 .font(.system(size: 25))
+                            Text(airlines.iata)
+                                .font(.system(size: 15))
+                            Text("\(airlines.fleet_size)")
+                                .font(.system(size: 15))
                         }
                     }
                 }
@@ -28,7 +28,7 @@ struct AirlineView: View {
             .task {
                 await loadData()
             }
-            
+            .navigationTitle("Airlines")
         }
     }
     func loadData() async {
@@ -38,8 +38,8 @@ struct AirlineView: View {
         }
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
-            if let decodedResponse = try? JSONDecoder().decode(AirlinesJSON.self, from: data) {
-                airlines = decodedResponse.airlines
+            if let decodedResponse = try? JSONDecoder().decode([Airlines].self, from: data) {
+                airlines = decodedResponse
             }
         } catch {
             print("Invalid data")
@@ -47,15 +47,14 @@ struct AirlineView: View {
     }
 }
 
-struct AirlinesJSON: Codable {
-    var airlines: [Airlines]
-}
-
 struct Airlines: Codable {
     var name: String
+    var website: String
+    var iata: String
+    var icao: String
+    var callsign: String
+    var fleet_size: Int
     var data_url: String
-    var picture_url: String
-    var square_url: String
 }
 
 struct AirlineView_Previews: PreviewProvider {
