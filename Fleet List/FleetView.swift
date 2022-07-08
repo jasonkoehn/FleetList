@@ -38,7 +38,7 @@ struct FleetView: View {
             }
             List {
                 ForEach(aircraft, id: \.hex) { aircraft in
-                    NavigationLink(destination: {AircraftView(name: name, type: aircraft.type, registration: aircraft.registration, delivery_date: aircraft.delivery_date, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn)}) {
+                    NavigationLink(destination: {AircraftView(name: name, type: aircraft.type, model: aircraft.model, registration: aircraft.registration, delivery_date: aircraft.delivery_date, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn)}) {
                         HStack {
                             Text(aircraft.registration)
                                 .font(.system(size: 25))
@@ -71,6 +71,7 @@ struct FleetView: View {
 
 struct Aircraft: Codable {
     var type: String
+    var model: String
     var registration: String
     var delivery_date: String
     var hex: String
