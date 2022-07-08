@@ -15,7 +15,8 @@ struct FleetView: View {
     var icao: String
     var callsign: String
     var fleet_size: Int
-    var data_url: String
+    var fleet_url: String
+    var picture_url: String
     var body: some View {
         VStack {
             HStack {
@@ -38,7 +39,7 @@ struct FleetView: View {
             }
             List {
                 ForEach(aircraft, id: \.hex) { aircraft in
-                    NavigationLink(destination: {AircraftView(name: name, type: aircraft.type, model: aircraft.model, registration: aircraft.registration, delivery_date: aircraft.delivery_date, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn)}) {
+                    NavigationLink(destination: {AircraftView(name: name, picture_url: picture_url, type: aircraft.type, model: aircraft.model, registration: aircraft.registration, delivery_date: aircraft.delivery_date, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn)}) {
                         HStack {
                             Text(aircraft.registration)
                                 .font(.system(size: 25))
@@ -54,7 +55,7 @@ struct FleetView: View {
         }
     }
     func loadData() async {
-        guard let url = URL(string: data_url) else {
+        guard let url = URL(string: fleet_url) else {
             print("Invalid URL")
             return
         }

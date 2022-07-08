@@ -13,15 +13,9 @@ struct AirlineView: View {
         NavigationView {
             List {
                 ForEach(airlines, id: \.name) { airlines in
-                    NavigationLink(destination: {FleetView(name: airlines.name, website: airlines.website, iata: airlines.iata, icao: airlines.icao, callsign: airlines.callsign, fleet_size: airlines.fleet_size, data_url: airlines.data_url)}) {
-                        HStack {
-                            Text(airlines.name)
-                                .font(.system(size: 25))
-                            Text(airlines.iata)
-                                .font(.system(size: 15))
-                            Text("\(airlines.fleet_size)")
-                                .font(.system(size: 15))
-                        }
+                    NavigationLink(destination: {FleetView(name: airlines.name, website: airlines.website, iata: airlines.iata, icao: airlines.icao, callsign: airlines.callsign, fleet_size: airlines.fleet_size, fleet_url: airlines.fleet_url, picture_url: airlines.picture_url)}) {
+                        Text(airlines.name)
+                            .font(.system(size: 25))
                     }
                 }
             }
@@ -54,7 +48,8 @@ struct Airlines: Codable {
     var icao: String
     var callsign: String
     var fleet_size: Int
-    var data_url: String
+    var fleet_url: String
+    var picture_url: String
 }
 
 struct AirlineView_Previews: PreviewProvider {
