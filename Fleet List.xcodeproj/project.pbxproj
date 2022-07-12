@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		871EF834287CFB3100559F3F /* AirlinesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871EF833287CFB3100559F3F /* AirlinesList.swift */; };
+		871EF836287CFF6F00559F3F /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871EF835287CFF6F00559F3F /* SwiftUIView.swift */; };
 		87353045286CDBFD007A9160 /* AircraftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87353044286CDBFD007A9160 /* AircraftView.swift */; };
 		875A7F00286CA26400BA669B /* AirlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875A7EFF286CA26400BA669B /* AirlineView.swift */; };
 		875A7F02286CA27100BA669B /* FleetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875A7F01286CA27100BA669B /* FleetView.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		871EF833287CFB3100559F3F /* AirlinesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirlinesList.swift; sourceTree = "<group>"; };
+		871EF835287CFF6F00559F3F /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		87353044286CDBFD007A9160 /* AircraftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AircraftView.swift; sourceTree = "<group>"; };
 		875A7EFF286CA26400BA669B /* AirlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirlineView.swift; sourceTree = "<group>"; };
 		875A7F01286CA27100BA669B /* FleetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleetView.swift; sourceTree = "<group>"; };
@@ -60,6 +64,8 @@
 				875A7EFF286CA26400BA669B /* AirlineView.swift */,
 				875A7F01286CA27100BA669B /* FleetView.swift */,
 				87353044286CDBFD007A9160 /* AircraftView.swift */,
+				871EF833287CFB3100559F3F /* AirlinesList.swift */,
+				871EF835287CFF6F00559F3F /* SwiftUIView.swift */,
 				8778207A286C9E9F00614B24 /* Assets.xcassets */,
 				8778207C286C9E9F00614B24 /* Fleet_List.entitlements */,
 				8778207D286C9E9F00614B24 /* Preview Content */,
@@ -147,7 +153,9 @@
 			files = (
 				87353045286CDBFD007A9160 /* AircraftView.swift in Sources */,
 				875A7F02286CA27100BA669B /* FleetView.swift in Sources */,
+				871EF836287CFF6F00559F3F /* SwiftUIView.swift in Sources */,
 				875A7F00286CA26400BA669B /* AirlineView.swift in Sources */,
+				871EF834287CFB3100559F3F /* AirlinesList.swift in Sources */,
 				87782077286C9E9E00614B24 /* Fleet_ListApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

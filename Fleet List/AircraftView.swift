@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AircraftView: View {
     var name: String
-    var picture_url: String
+    var alias: String
     var type: String
     var model: String
     var registration: String
@@ -20,7 +20,7 @@ struct AircraftView: View {
     var fn: Int
     var body: some View {
         VStack {
-            Image(name)
+            Image(alias)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .padding()
@@ -103,10 +103,3 @@ struct AircraftView: View {
     }
 }
 
-struct AircraftView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            AircraftView(name: "JetBlue Airways", picture_url: "", type: "B38M", model: "Boeing 737 Max 8", registration: "N8701L", delivery_date: "2018-02-20", hex: "A1A87E", msn: 55389, ln: 4480, fn: 8701)
-        }
-    }
-}

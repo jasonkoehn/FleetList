@@ -10,13 +10,13 @@ import SwiftUI
 struct FleetView: View {
     @State var aircraft: [Aircraft] = []
     var name: String
+    var country: String
     var website: String
     var iata: String
     var icao: String
     var callsign: String
-    var fleet_size: Int
-    var fleet_url: String
-    var picture_url: String
+    var fleetsize: Int
+    var alias: String
     var body: some View {
         VStack {
             HStack {
@@ -39,7 +39,7 @@ struct FleetView: View {
             }
             List {
                 ForEach(aircraft, id: \.hex) { aircraft in
-                    NavigationLink(destination: {AircraftView(name: name, picture_url: picture_url, type: aircraft.type, model: aircraft.model, registration: aircraft.registration, delivery_date: aircraft.delivery_date, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn)}) {
+                    NavigationLink(destination: {AircraftView(name: name, alias: alias, type: aircraft.type, model: aircraft.model, registration: aircraft.registration, delivery_date: aircraft.delivery_date, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn)}) {
                         HStack {
                             Text(aircraft.registration)
                                 .font(.system(size: 25))
@@ -55,7 +55,7 @@ struct FleetView: View {
         }
     }
     func loadData() async {
-        guard let url = URL(string: fleet_url) else {
+        guard let url = URL(string: "https://jasonkoehn.github.io/AirlineData/"+alias+".json") else {
             print("Invalid URL")
             return
         }
