@@ -48,6 +48,7 @@ struct FleetView: View {
                     }
                 }
             }
+            .listStyle(PlainListStyle())
             .navigationTitle(name)
             .task {
                 await loadData()

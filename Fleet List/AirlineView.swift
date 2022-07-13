@@ -11,13 +11,24 @@ struct AirlineView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(airlines, id: \.name) { airlines in
-                    NavigationLink(destination: {FleetView(name: airlines.name, country: airlines.country, website: airlines.website, iata: airlines.iata, icao: airlines.icao, callsign: airlines.callsign, fleetsize: airlines.fleetsize, alias: airlines.alias)}) {
-                        Text(airlines.name)
-                            .font(.system(size: 25))
+                Section("Canada") {
+                    ForEach(canadaAirlines, id: \.alias) { airlines in
+                        NavigationLink(destination: {FleetView(name: airlines.name, country: airlines.country, website: airlines.website, iata: airlines.iata, icao: airlines.icao, callsign: airlines.callsign, fleetsize: airlines.fleetsize, alias: airlines.alias)}) {
+                            Text(airlines.name)
+                                .font(.system(size: 23))
+                        }
+                    }
+                }
+                Section("United States") {
+                    ForEach(usAirlines, id: \.alias) { airlines in
+                        NavigationLink(destination: {FleetView(name: airlines.name, country: airlines.country, website: airlines.website, iata: airlines.iata, icao: airlines.icao, callsign: airlines.callsign, fleetsize: airlines.fleetsize, alias: airlines.alias)}) {
+                            Text(airlines.name)
+                                .font(.system(size: 23))
+                        }
                     }
                 }
             }
+            .listStyle(PlainListStyle())
             .navigationTitle("Airlines")
         }
     }
