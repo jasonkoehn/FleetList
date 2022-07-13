@@ -33,46 +33,61 @@ struct AircraftView: View {
                 .padding(.bottom)
             List {
                 HStack {
-                    Text("Operator:")
-                        .font(.system(size: 25))
-                        .italic()
-                        .frame(width: 110)
+                    HStack {
+                        Text("Operator:")
+                            .font(.system(size: 25))
+                            .italic()
+                        Spacer()
+                    }
+                    .frame(width: 115)
                     Text(name)
                         .font(.system(size: 25))
                     Spacer()
                 }
                 HStack {
-                    Text("Type:")
-                        .font(.system(size: 25))
-                        .italic()
-                        .frame(width: 110)
+                    HStack {
+                        Text("Type:")
+                            .font(.system(size: 25))
+                            .italic()
+                        Spacer()
+                    }
+                    .frame(width: 115)
                     Text(type)
                         .font(.system(size: 25))
                     Spacer()
                 }
                 HStack {
-                    Text("Delivery:")
-                        .font(.system(size: 25))
-                        .italic()
-                        .frame(width: 110)
+                    HStack {
+                        Text("Delivery:")
+                            .font(.system(size: 25))
+                            .italic()
+                        Spacer()
+                    }
+                    .frame(width: 115)
                     Text(delivery_date)
                         .font(.system(size: 25))
                     Spacer()
                 }
                 HStack {
-                    Text("Hex:")
-                        .font(.system(size: 25))
-                        .italic()
-                        .frame(width: 110)
+                    HStack {
+                        Text("Hex:")
+                            .font(.system(size: 25))
+                            .italic()
+                        Spacer()
+                    }
+                    .frame(width: 115)
                     Text(hex)
                         .font(.system(size: 25))
                     Spacer()
                 }
                 HStack {
-                    Text("MSN:")
-                        .font(.system(size: 25))
-                        .italic()
-                        .frame(width: 110)
+                    HStack {
+                        Text("MSN:")
+                            .font(.system(size: 25))
+                            .italic()
+                        Spacer()
+                    }
+                    .frame(width: 115)
                     Text(verbatim: "\(msn)")
                     
                         .font(.system(size: 25))
@@ -80,20 +95,26 @@ struct AircraftView: View {
                 }
                 if ln != 0 {
                     HStack {
-                        Text("LN:")
-                            .font(.system(size: 25))
-                            .italic()
-                            .frame(width: 110)
+                        HStack {
+                            Text("LN:")
+                                .font(.system(size: 25))
+                                .italic()
+                            Spacer()
+                        }
+                        .frame(width: 115)
                         Text(verbatim: "\(ln)")
                             .font(.system(size: 25))
                         Spacer()
                     }
                 }
                 HStack {
-                    Text("FN:")
-                        .font(.system(size: 25))
-                        .italic()
-                        .frame(width: 110)
+                    HStack {
+                        Text("FN:")
+                            .font(.system(size: 25))
+                            .italic()
+                        Spacer()
+                    }
+                    .frame(width: 115)
                     Text(verbatim: "\(fn)")
                         .font(.system(size: 25))
                     Spacer()
@@ -106,3 +127,8 @@ struct AircraftView: View {
     }
 }
 
+struct AircraftView_Previews: PreviewProvider {
+    static var previews: some View {
+        AircraftView(name: "Southwest Airlines", alias: "SouthwestAirlines", type: "B38M", model: "Boeing 737 MAX 8", registration: "N8707P", delivery_date: "2017-09-25", hex: "ABF9B1", msn: 36929, ln: 5992, fn: 8707)
+    }
+}
