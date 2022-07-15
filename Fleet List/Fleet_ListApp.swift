@@ -9,14 +9,12 @@ import SwiftUI
 
 @main
 struct Fleet_ListApp: App {
-    init() {
-        Task {
-            await loadAirlinesfromapi()
-            saveAirlines()
-            await loadCountriesfromapi()
-            saveCountries()
-        }
-    }
+//    init() {
+//        Task {
+//            await loadAirlinesfromapi()
+//            saveAirlines()
+//        }
+//    }
     var body: some Scene {
         WindowGroup {
             UserView()
