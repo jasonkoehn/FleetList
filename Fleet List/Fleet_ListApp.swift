@@ -11,8 +11,10 @@ import SwiftUI
 struct Fleet_ListApp: App {
     init() {
         Task {
-            await loadJSON()
-            saveData()
+            await loadAirlinesfromapi()
+            saveAirlines()
+            await loadCountriesfromapi()
+            saveCountries()
         }
     }
     var body: some Scene {
