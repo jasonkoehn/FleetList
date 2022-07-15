@@ -7,27 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		871EF834287CFB3100559F3F /* AirlinesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871EF833287CFB3100559F3F /* AirlinesList.swift */; };
-		871EF836287CFF6F00559F3F /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871EF835287CFF6F00559F3F /* SwiftUIView.swift */; };
 		87353045286CDBFD007A9160 /* AircraftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87353044286CDBFD007A9160 /* AircraftView.swift */; };
-		875A7F00286CA26400BA669B /* AirlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875A7EFF286CA26400BA669B /* AirlineView.swift */; };
+		875A7F00286CA26400BA669B /* AirlinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875A7EFF286CA26400BA669B /* AirlinesView.swift */; };
 		875A7F02286CA27100BA669B /* FleetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875A7F01286CA27100BA669B /* FleetView.swift */; };
 		87782077286C9E9E00614B24 /* Fleet_ListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87782076286C9E9E00614B24 /* Fleet_ListApp.swift */; };
 		8778207B286C9E9F00614B24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8778207A286C9E9F00614B24 /* Assets.xcassets */; };
 		8778207F286C9E9F00614B24 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8778207E286C9E9F00614B24 /* Preview Assets.xcassets */; };
+		87A4AC022880C6B000909EC2 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A4AC012880C6B000909EC2 /* UserView.swift */; };
+		87A4AC042880C7C400909EC2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A4AC032880C7C400909EC2 /* SettingsView.swift */; };
+		87A4AC062880FDD000909EC2 /* DataFetchSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A4AC052880FDD000909EC2 /* DataFetchSave.swift */; };
+		87A4AC082881054400909EC2 /* AirlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A4AC072881054400909EC2 /* AirlineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		871EF833287CFB3100559F3F /* AirlinesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirlinesList.swift; sourceTree = "<group>"; };
-		871EF835287CFF6F00559F3F /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		87353044286CDBFD007A9160 /* AircraftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AircraftView.swift; sourceTree = "<group>"; };
-		875A7EFF286CA26400BA669B /* AirlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirlineView.swift; sourceTree = "<group>"; };
+		875A7EFF286CA26400BA669B /* AirlinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirlinesView.swift; sourceTree = "<group>"; };
 		875A7F01286CA27100BA669B /* FleetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleetView.swift; sourceTree = "<group>"; };
 		87782073286C9E9E00614B24 /* Fleet List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fleet List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87782076286C9E9E00614B24 /* Fleet_ListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fleet_ListApp.swift; sourceTree = "<group>"; };
 		8778207A286C9E9F00614B24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8778207C286C9E9F00614B24 /* Fleet_List.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fleet_List.entitlements; sourceTree = "<group>"; };
 		8778207E286C9E9F00614B24 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		87A4AC012880C6B000909EC2 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		87A4AC032880C7C400909EC2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		87A4AC052880FDD000909EC2 /* DataFetchSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetchSave.swift; sourceTree = "<group>"; };
+		87A4AC072881054400909EC2 /* AirlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirlineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,11 +65,13 @@
 			isa = PBXGroup;
 			children = (
 				87782076286C9E9E00614B24 /* Fleet_ListApp.swift */,
-				875A7EFF286CA26400BA669B /* AirlineView.swift */,
+				87A4AC012880C6B000909EC2 /* UserView.swift */,
+				875A7EFF286CA26400BA669B /* AirlinesView.swift */,
 				875A7F01286CA27100BA669B /* FleetView.swift */,
+				87A4AC072881054400909EC2 /* AirlineView.swift */,
 				87353044286CDBFD007A9160 /* AircraftView.swift */,
-				871EF833287CFB3100559F3F /* AirlinesList.swift */,
-				871EF835287CFF6F00559F3F /* SwiftUIView.swift */,
+				87A4AC052880FDD000909EC2 /* DataFetchSave.swift */,
+				87A4AC032880C7C400909EC2 /* SettingsView.swift */,
 				8778207A286C9E9F00614B24 /* Assets.xcassets */,
 				8778207C286C9E9F00614B24 /* Fleet_List.entitlements */,
 				8778207D286C9E9F00614B24 /* Preview Content */,
@@ -152,11 +158,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				87353045286CDBFD007A9160 /* AircraftView.swift in Sources */,
+				87A4AC042880C7C400909EC2 /* SettingsView.swift in Sources */,
 				875A7F02286CA27100BA669B /* FleetView.swift in Sources */,
-				871EF836287CFF6F00559F3F /* SwiftUIView.swift in Sources */,
-				875A7F00286CA26400BA669B /* AirlineView.swift in Sources */,
-				871EF834287CFB3100559F3F /* AirlinesList.swift in Sources */,
+				87A4AC082881054400909EC2 /* AirlineView.swift in Sources */,
+				87A4AC062880FDD000909EC2 /* DataFetchSave.swift in Sources */,
+				875A7F00286CA26400BA669B /* AirlinesView.swift in Sources */,
 				87782077286C9E9E00614B24 /* Fleet_ListApp.swift in Sources */,
+				87A4AC022880C6B000909EC2 /* UserView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

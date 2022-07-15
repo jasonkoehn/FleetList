@@ -11,7 +11,7 @@ import SwiftUI
 struct Fleet_ListApp: App {
     var body: some Scene {
         WindowGroup {
-            AirlineView()
+            UserView()
         }
     }
 }

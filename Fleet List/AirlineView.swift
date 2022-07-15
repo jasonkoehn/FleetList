@@ -2,40 +2,48 @@
 //  AirlineView.swift
 //  Fleet List
 //
-//  Created by Jason Koehn on 6/29/22.
+//  Created by Jason Koehn on 7/14/22.
 //
 
 import SwiftUI
 
 struct AirlineView: View {
+    var name: String
+    var country: String
+    var website: String
+    var iata: String
+    var icao: String
+    var callsign: String
+    var alias: String
+    var fleetsize: Int
     var body: some View {
-        NavigationView {
-            List {
-                Section("Canada") {
-                    ForEach(canadaAirlines, id: \.alias) { airlines in
-                        NavigationLink(destination: {FleetView(name: airlines.name, country: airlines.country, website: airlines.website, iata: airlines.iata, icao: airlines.icao, callsign: airlines.callsign, fleetsize: airlines.fleetsize, alias: airlines.alias)}) {
-                            Text(airlines.name)
-                                .font(.system(size: 23))
-                        }
-                    }
-                }
-                Section("United States") {
-                    ForEach(usAirlines, id: \.alias) { airlines in
-                        NavigationLink(destination: {FleetView(name: airlines.name, country: airlines.country, website: airlines.website, iata: airlines.iata, icao: airlines.icao, callsign: airlines.callsign, fleetsize: airlines.fleetsize, alias: airlines.alias)}) {
-                            Text(airlines.name)
-                                .font(.system(size: 23))
-                        }
-                    }
-                }
+        VStack {
+            Image(alias)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 80)
+                .padding(.horizontal, 10)
+            HStack {
+                Spacer()
+                Text("IATA")
+                    .italic()
+                    .font(.subheadline)
+                Text(iata)
+                Spacer()
+                Text("ICOA")
+                    .italic()
+                    .font(.subheadline)
+                Text(icao)
+                Spacer()
+                Text("Callsign")
+                    .italic()
+                    .font(.subheadline)
+                Text(callsign)
+                Spacer()
             }
-            .listStyle(PlainListStyle())
-            .navigationTitle("Airlines")
+            Text(website)
+            Text("\(fleetsize)")
         }
-    }
-}
-
-struct AirlineView_Previews: PreviewProvider {
-    static var previews: some View {
-        AirlineView()
+        
     }
 }

@@ -15,27 +15,35 @@ struct FleetView: View {
     var iata: String
     var icao: String
     var callsign: String
-    var fleetsize: Int
     var alias: String
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-                Text("IATA")
-                    .italic()
-                    .font(.subheadline)
-                Text(iata)
-                Spacer()
-                Text("ICOA")
-                    .italic()
-                    .font(.subheadline)
-                Text(icao)
-                Spacer()
-                Text("Callsign")
-                    .italic()
-                    .font(.subheadline)
-                Text(callsign)
-                Spacer()
+            NavigationLink(destination: {AirlineView(name: name, country: country, website: website, iata: iata, icao: icao, callsign: callsign, alias: alias, fleetsize: aircraft.count)}) {
+                VStack {
+                    Image(alias)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 80)
+                        .padding(.horizontal, 10)
+                    HStack {
+                        Spacer()
+                        Text("IATA")
+                            .italic()
+                            .font(.subheadline)
+                        Text(iata)
+                        Spacer()
+                        Text("ICOA")
+                            .italic()
+                            .font(.subheadline)
+                        Text(icao)
+                        Spacer()
+                        Text("Callsign")
+                            .italic()
+                            .font(.subheadline)
+                        Text(callsign)
+                        Spacer()
+                    }.foregroundColor(.primary)
+                }
             }
             List {
                 ForEach(aircraft, id: \.hex) { aircraft in
