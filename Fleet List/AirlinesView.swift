@@ -23,10 +23,17 @@ struct AirlinesView: View {
                     }
                 }
             }
-        }.task {
+        }
+        .task {
             loadData()
-        }.navigationTitle("Airlines")
-            .listStyle(PlainListStyle())
+        }
+        .navigationTitle("Airlines")
+        .listStyle(PlainListStyle())
+        .refreshable {
+            await loadJSON()
+            saveData()
+            loadData()
+        }
     }
     func loadData() {
         let manager = FileManager.default

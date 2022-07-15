@@ -9,17 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-        Button(action: {
-            Task {
-                await loadJSON()
-                saveData()
-            }
-        }) {
-            Text("Load&Save")
-                .padding()
-                .background(Color.green)
-                .cornerRadius(10)
-        }
+        Text("Settings")
     }
 }
 

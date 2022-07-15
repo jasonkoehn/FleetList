@@ -9,6 +9,12 @@ import SwiftUI
 
 @main
 struct Fleet_ListApp: App {
+    init() {
+        Task {
+            await loadJSON()
+            saveData()
+        }
+    }
     var body: some Scene {
         WindowGroup {
             UserView()
