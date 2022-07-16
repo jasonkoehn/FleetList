@@ -9,6 +9,11 @@ import SwiftUI
 
 struct AirlinesView: View {
     @State var airlines: [Airline] = []
+    func sortAirlines() {
+        airlines.sort {
+            $0.alias < $1.alias
+        }
+    }
     @State var countries: [Country] = []
     var body: some View {
         List {
@@ -22,6 +27,9 @@ struct AirlinesView: View {
                             }
                         }
                     }
+                }
+                .task {
+                    sortAirlines()
                 }
             }
         }
@@ -39,7 +47,7 @@ struct AirlinesView: View {
                 await loadAirlinesfromapi()
                 saveAirlines()
                 loadAirlines()
-                
+
             }
         }
     }
@@ -51,7 +59,10 @@ struct AirlinesView: View {
         let decoder = PropertyListDecoder()
         let response = try! decoder.decode([Airline].self, from: data)
         airlines = response
-        print(response)
+        airlines.sort {
+            $0.alias < $1.alias
+        }
+        print(airlines)
     }
     func loadCountries() {
         let manager = FileManager.default
@@ -61,7 +72,10 @@ struct AirlinesView: View {
         let decoder = PropertyListDecoder()
         let response = try! decoder.decode([Country].self, from: data)
         countries = response
-        print(response)
+        countries.sort {
+            $0.name < $1.name
+        }
+        print(countries)
     }
 }
 
