@@ -17,7 +17,12 @@ struct Airline: Codable {
     var alias: String
 }
 
+struct Country: Codable {
+    var name: String
+}
+
 var airlinesBeforeSave: [Airline] = []
+var countriesBeforeSave: [Country] = []
 
 func saveAirlines() {
     let manager = FileManager.default
@@ -43,3 +48,29 @@ func loadAirlinesfromapi() async {
         print("Invalid data")
     }
 }
+
+func saveCountries() {
+    let manager = FileManager.default
+    guard let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
+    let fileUrl = url.appendingPathComponent("countries.plist")
+    manager.createFile(atPath: fileUrl.path, contents: nil, attributes: nil)
+    let encoder = PropertyListEncoder()
+    let encodedData = try! encoder.encode(countriesBeforeSave)
+    try! encodedData.write(to: fileUrl)
+}
+
+func loadCountriesfromapi() async {
+    guard let url = URL(string: "https://jasonkoehn.github.io/AirlineData/Countries.json") else {
+        print("Invalid URL")
+        return
+    }
+    do {
+        let (data, _) = try await URLSession.shared.data(from: url)
+        if let decodedResponse = try? JSONDecoder().decode([Country].self, from: data) {
+            countriesBeforeSave = decodedResponse
+        }
+    } catch {
+        print("Invalid data")
+    }
+}
+
