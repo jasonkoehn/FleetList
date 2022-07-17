@@ -49,9 +49,13 @@ struct FleetView: View {
                 ForEach(aircraft, id: \.hex) { aircraft in
                     NavigationLink(destination: {AircraftView(name: name, alias: alias, type: aircraft.type, model: aircraft.model, registration: aircraft.registration, delivery_date: aircraft.delivery_date, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn)}) {
                         HStack {
-                            Text(aircraft.registration)
-                                .font(.system(size: 25))
+                            HStack {
+                                Text(aircraft.registration)
+                                    .font(.system(size: 23))
+                                Spacer()
+                            }.frame(width: 120)
                             Text(aircraft.type)
+                                .font(.system(size: 15))
                         }
                     }
                 }

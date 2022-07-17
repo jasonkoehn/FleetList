@@ -11,38 +11,37 @@ struct AirlinesView: View {
     @State var airlines: [Airline] = []
     @State var countries: [Country] = []
     var body: some View {
-        List {
-            ForEach(countries, id: \.name) { country in
-                Section(country.name) {
-                    ForEach(airlines, id: \.name) { airlines in
-                        if airlines.country == country.name {
-                            NavigationLink(destination: FleetView(name: airlines.name, country: airlines.country, website: airlines.website, iata: airlines.iata, icao: airlines.icao, callsign: airlines.callsign, alias: airlines.alias)) {
-                                Text(airlines.name)
-                                    .font(.system(size: 23))
+            List {
+                ForEach(countries, id: \.name) { country in
+                    Section(country.name) {
+                        ForEach(airlines, id: \.name) { airlines in
+                            if airlines.country == country.name {
+                                NavigationLink(destination: FleetView(name: airlines.name, country: airlines.country, website: airlines.website, iata: airlines.iata, icao: airlines.icao, callsign: airlines.callsign, alias: airlines.alias)) {
+                                    Text(airlines.name)
+                                        .font(.system(size: 23))
+                                }
                             }
                         }
                     }
                 }
             }
-        }
-        .task {
-            loadCountries()
-            loadAirlines()
-        }
-        
-        .navigationTitle("Airlines")
-        .listStyle(PlainListStyle())
-        .refreshable {
-            Task {
-                await loadCountriesfromapi()
-                saveCountries()
+            .task {
                 loadCountries()
-                await loadAirlinesfromapi()
-                saveAirlines()
                 loadAirlines()
-                
             }
-        }
+            .navigationTitle("Airlines")
+            .listStyle(PlainListStyle())
+            .refreshable {
+                Task {
+                    await loadCountriesfromapi()
+                    saveCountries()
+                    loadCountries()
+                    await loadAirlinesfromapi()
+                    saveAirlines()
+                    loadAirlines()
+                    
+                }
+            }
     }
     func loadAirlines() {
         let manager = FileManager.default
