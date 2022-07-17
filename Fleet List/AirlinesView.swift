@@ -9,11 +9,6 @@ import SwiftUI
 
 struct AirlinesView: View {
     @State var airlines: [Airline] = []
-    func sortAirlines() {
-        airlines.sort {
-            $0.alias < $1.alias
-        }
-    }
     @State var countries: [Country] = []
     var body: some View {
         List {
@@ -28,15 +23,13 @@ struct AirlinesView: View {
                         }
                     }
                 }
-                .task {
-                    sortAirlines()
-                }
             }
         }
         .task {
             loadCountries()
             loadAirlines()
         }
+        
         .navigationTitle("Airlines")
         .listStyle(PlainListStyle())
         .refreshable {
@@ -47,7 +40,7 @@ struct AirlinesView: View {
                 await loadAirlinesfromapi()
                 saveAirlines()
                 loadAirlines()
-
+                
             }
         }
     }
