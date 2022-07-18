@@ -23,6 +23,7 @@ struct FleetView: View {
                     Image(alias)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .cornerRadius(4)
                         .frame(height: 80)
                         .padding(.horizontal, 10)
                     HStack {

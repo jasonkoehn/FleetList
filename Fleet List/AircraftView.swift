@@ -23,6 +23,7 @@ struct AircraftView: View {
             Image(alias)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+                .cornerRadius(4)
                 .padding(.horizontal)
                 .frame(height: 100)
             Text(registration)

@@ -10,6 +10,7 @@ import SwiftUI
 struct AirlinesView: View {
     @State var airlines: [Airline] = []
     @State var countries: [Country] = []
+    @State var sortByCountry = true
     var body: some View {
             List {
                 ForEach(countries, id: \.name) { country in

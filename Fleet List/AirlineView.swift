@@ -21,6 +21,7 @@ struct AirlineView: View {
             Image(alias)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+                .cornerRadius(4)
                 .frame(height: 150)
                 .padding(10)
             Text(name)
