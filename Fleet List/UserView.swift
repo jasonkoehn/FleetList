@@ -9,19 +9,19 @@ import SwiftUI
 
 struct UserView: View {
     var body: some View {
-//        TabView {
+        TabView {
             NavigationView {
                 AirlinesView()
             }
-//            .tabItem {
-//                Image(systemName: "airplane")
-//            }
-//            NavigationView {
-//                SettingsView()
-//            }.tabItem {
-//                Image(systemName: "gear")
-//            }
-//        }
+            .tabItem {
+                Image(systemName: "airplane")
+            }
+            NavigationView {
+                SendView()
+            }.tabItem {
+                Image(systemName: "gear")
+            }
+        }
     }
 }
 
