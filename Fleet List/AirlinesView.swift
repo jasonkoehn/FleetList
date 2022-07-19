@@ -26,10 +26,10 @@ struct AirlinesView: View {
                     }
                 }
             }
-            .task {
-                loadCountries()
-                loadAirlines()
-            }
+//            .task {
+//                loadCountries()
+//                loadAirlines()
+//            }
             .navigationTitle("Airlines")
             .listStyle(PlainListStyle())
             .refreshable {

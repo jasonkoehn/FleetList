@@ -16,11 +16,11 @@ struct UserView: View {
             .tabItem {
                 Image(systemName: "airplane")
             }
-            NavigationView {
-                SendView()
-            }.tabItem {
-                Image(systemName: "gear")
-            }
+//            NavigationView {
+//                SendView()
+//            }.tabItem {
+//                Image(systemName: "gear")
+//            }
         }
     }
 }
