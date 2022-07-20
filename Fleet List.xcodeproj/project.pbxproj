@@ -17,7 +17,6 @@
 		87A4AC042880C7C400909EC2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A4AC032880C7C400909EC2 /* SettingsView.swift */; };
 		87A4AC062880FDD000909EC2 /* DataFetchSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A4AC052880FDD000909EC2 /* DataFetchSave.swift */; };
 		87A4AC082881054400909EC2 /* AirlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A4AC072881054400909EC2 /* AirlineView.swift */; };
-		87E7083428866A64000415B4 /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E7083328866A64000415B4 /* SendView.swift */; };
 		87FFA5792887B89800E97A23 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FFA5782887B89800E97A23 /* LaunchView.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +33,6 @@
 		87A4AC032880C7C400909EC2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		87A4AC052880FDD000909EC2 /* DataFetchSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetchSave.swift; sourceTree = "<group>"; };
 		87A4AC072881054400909EC2 /* AirlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirlineView.swift; sourceTree = "<group>"; };
-		87E7083328866A64000415B4 /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
 		87FFA5782887B89800E97A23 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,7 +75,6 @@
 				87353044286CDBFD007A9160 /* AircraftView.swift */,
 				87A4AC052880FDD000909EC2 /* DataFetchSave.swift */,
 				87A4AC032880C7C400909EC2 /* SettingsView.swift */,
-				87E7083328866A64000415B4 /* SendView.swift */,
 				8778207A286C9E9F00614B24 /* Assets.xcassets */,
 				8778207C286C9E9F00614B24 /* Fleet_List.entitlements */,
 				8778207D286C9E9F00614B24 /* Preview Content */,
@@ -166,7 +163,6 @@
 				87353045286CDBFD007A9160 /* AircraftView.swift in Sources */,
 				87FFA5792887B89800E97A23 /* LaunchView.swift in Sources */,
 				87A4AC042880C7C400909EC2 /* SettingsView.swift in Sources */,
-				87E7083428866A64000415B4 /* SendView.swift in Sources */,
 				875A7F02286CA27100BA669B /* FleetView.swift in Sources */,
 				87A4AC082881054400909EC2 /* AirlineView.swift in Sources */,
 				87A4AC062880FDD000909EC2 /* DataFetchSave.swift in Sources */,

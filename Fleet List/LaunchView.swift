@@ -35,12 +35,6 @@ struct LaunchView: View {
             
             Spacer()
         }
-        .task {
-            await loadCountriesfromapi()
-            saveCountries()
-            await loadAirlinesfromapi()
-            saveAirlines()
-        }
         .ignoresSafeArea()
         .frame(width: 500, height: 1000)
         .background(Color.green)

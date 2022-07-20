@@ -21,7 +21,7 @@ struct UserView: View {
                     Image(systemName: "airplane")
                 }
                 NavigationView {
-                    SendView()
+//                    SendView()
                 }.tabItem {
                     Image(systemName: "gear")
                 }
