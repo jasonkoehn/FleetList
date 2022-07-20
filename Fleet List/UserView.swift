@@ -8,19 +8,24 @@
 import SwiftUI
 
 struct UserView: View {
+    @AppStorage("Launched") var appLaunched = false
     var body: some View {
-        TabView {
-            NavigationView {
-                AirlinesView()
+        if appLaunched == false {
+            LaunchView()
+        } else {
+            TabView {
+                NavigationView {
+                    AirlinesView()
+                }
+                .tabItem {
+                    Image(systemName: "airplane")
+                }
+                NavigationView {
+                    SendView()
+                }.tabItem {
+                    Image(systemName: "gear")
+                }
             }
-            .tabItem {
-                Image(systemName: "airplane")
-            }
-//            NavigationView {
-//                SendView()
-//            }.tabItem {
-//                Image(systemName: "gear")
-//            }
         }
     }
 }

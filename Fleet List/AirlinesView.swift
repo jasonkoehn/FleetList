@@ -12,37 +12,47 @@ struct AirlinesView: View {
     @State var countries: [Country] = []
     @State var sortByCountry = true
     var body: some View {
-            List {
-                ForEach(countries, id: \.name) { country in
-                    Section(country.name) {
-                        ForEach(airlines, id: \.name) { airlines in
-                            if airlines.country == country.name {
-                                NavigationLink(destination: FleetView(name: airlines.name, country: airlines.country, website: airlines.website, iata: airlines.iata, icao: airlines.icao, callsign: airlines.callsign, alias: airlines.alias)) {
-                                    Text(airlines.name)
-                                        .font(.system(size: 23))
-                                }
+        List {
+            ForEach(countries, id: \.name) { country in
+                Section(country.name) {
+                    ForEach(airlines, id: \.name) { airlines in
+                        if airlines.country == country.name {
+                            NavigationLink(destination: FleetView(name: airlines.name, country: airlines.country, website: airlines.website, iata: airlines.iata, icao: airlines.icao, callsign: airlines.callsign, alias: airlines.alias)) {
+                                Text(airlines.name)
+                                    .font(.system(size: 23))
                             }
                         }
                     }
                 }
-            }
-//            .task {
-//                loadCountries()
-//                loadAirlines()
+            } 
+//            Button(action: {
+//                let encoder = JSONEncoder()
+//                guard let encoded = try? encoder.encode(airlines) else {
+//                    print("Failed to encode order")
+//                    return
+//                }
+//                print(String(data: encoded, encoding: .utf8)!)
+//            }){
+//                Text("Send")
 //            }
-            .navigationTitle("Airlines")
-            .listStyle(PlainListStyle())
-            .refreshable {
-                Task {
-                    await loadCountriesfromapi()
-                    saveCountries()
-                    loadCountries()
-                    await loadAirlinesfromapi()
-                    saveAirlines()
-                    loadAirlines()
-                    
-                }
+        }
+        .task {
+            loadCountries()
+            loadAirlines()
+        }
+        .navigationTitle("Airlines")
+        .listStyle(PlainListStyle())
+        .refreshable {
+            Task {
+                await loadCountriesfromapi()
+                saveCountries()
+                loadCountries()
+                await loadAirlinesfromapi()
+                saveAirlines()
+                loadAirlines()
+                
             }
+        }
     }
     func loadAirlines() {
         let manager = FileManager.default

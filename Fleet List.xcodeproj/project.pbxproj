@@ -18,6 +18,7 @@
 		87A4AC062880FDD000909EC2 /* DataFetchSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A4AC052880FDD000909EC2 /* DataFetchSave.swift */; };
 		87A4AC082881054400909EC2 /* AirlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A4AC072881054400909EC2 /* AirlineView.swift */; };
 		87E7083428866A64000415B4 /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E7083328866A64000415B4 /* SendView.swift */; };
+		87FFA5792887B89800E97A23 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FFA5782887B89800E97A23 /* LaunchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		87A4AC052880FDD000909EC2 /* DataFetchSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetchSave.swift; sourceTree = "<group>"; };
 		87A4AC072881054400909EC2 /* AirlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirlineView.swift; sourceTree = "<group>"; };
 		87E7083328866A64000415B4 /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
+		87FFA5782887B89800E97A23 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			children = (
 				87782076286C9E9E00614B24 /* Fleet_ListApp.swift */,
 				87A4AC012880C6B000909EC2 /* UserView.swift */,
+				87FFA5782887B89800E97A23 /* LaunchView.swift */,
 				875A7EFF286CA26400BA669B /* AirlinesView.swift */,
 				875A7F01286CA27100BA669B /* FleetView.swift */,
 				87A4AC072881054400909EC2 /* AirlineView.swift */,
@@ -161,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87353045286CDBFD007A9160 /* AircraftView.swift in Sources */,
+				87FFA5792887B89800E97A23 /* LaunchView.swift in Sources */,
 				87A4AC042880C7C400909EC2 /* SettingsView.swift in Sources */,
 				87E7083428866A64000415B4 /* SendView.swift in Sources */,
 				875A7F02286CA27100BA669B /* FleetView.swift in Sources */,
@@ -301,10 +305,10 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jasonkoehn.Fleet-List";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -333,10 +337,10 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jasonkoehn.Fleet-List";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -62,7 +62,7 @@ struct FleetView: View {
             }
             List {
                 ForEach(models, id: \.type) { type in
-                    Section(type.type) {
+                    Section(type.model) {
                         ForEach(aircraft, id: \.hex) { aircraft in
                             if aircraft.type == type.type {
                                 NavigationLink(destination: {AircraftView(name: name, alias: alias, type: aircraft.type, model: type.model, registration: aircraft.registration, delivery_date: aircraft.delivery_date, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn)}) {
@@ -86,17 +86,17 @@ struct FleetView: View {
             .task {
                 await loadAircraft()
             }
-//            .refreshable {
-//                Task {
-//                    await loadAircraftfromapi()
-//                    saveAircraft()
-//                    loadAircraft()
-//                }
-//            }
+            //            .refreshable {
+            //                Task {
+            //                    await loadAircraftfromapi()
+            //                    saveAircraft()
+            //                    loadAircraft()
+            //                }
+            //            }
         }
     }
     func loadAircraft() async {
-        guard let url = URL(string: "https://jasonkoehn.github.io/AirlineData/SouthwestAirlines.json") else {
+        guard let url = URL(string: "https://jasonkoehn.github.io/AirlineData/"+alias+".json") else {
             print("Invalid URL")
             return
         }
