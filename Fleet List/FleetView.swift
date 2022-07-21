@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FleetView: View {
+    @State var aircraftBeforeSave = [Aircraft]()
+    @State var modelsBeforeSave = [Models]()
     @State var aircraft = [Aircraft]()
     @State var models = [Models]()
     var name: String
@@ -73,31 +75,60 @@ struct FleetView: View {
             .task {
                 await loadAircraft()
             }
-            //            .refreshable {
-            //                Task {
-            //                    await loadAircraftfromapi()
-            //                    saveAircraft()
-            //                    loadAircraft()
-            //                }
-            //            }
+//            .refreshable {
+//                Task {
+//                    await loadAircraftFromapi()
+//                    saveAircraft()
+//                    loadAircraft()
+//                }
+//            }
         }
     }
-//    func loadAircraft() async {
-//        guard let url = URL(string: "https://jasonkoehn.github.io/AirlineData/"+alias+".json") else {
-//            print("Invalid URL")
-//            return
-//        }
-//        do {
-//            let (data, _) = try await URLSession.shared.data(from: url)
-//            if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data) {
-//                aircraft = decodedResponse.aircraft
-//                models = decodedResponse.models
-//                print(aircraft)
-//                print(models)
-//            }
-//        } catch {
-//            print("Invalid data")
-//        }
+    
+//    func loadAircraft() {
+//        let manager = FileManager.default
+//        guard let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
+//        let aircraftFileUrl = url.appendingPathComponent(alias+".plist")
+//        let typesFileUrl = url.appendingPathComponent(alias+"types.plist")
+//        let aircrafts = try! Data(contentsOf: aircraftFileUrl)
+//        let types = try! Data(contentsOf: typesFileUrl)
+//        let decoder = PropertyListDecoder()
+//        let aircraftResponse = try! decoder.decode([Aircraft].self, from: aircrafts)
+//        let typesResponse = try! decoder.decode([Models].self, from: types)
+//        aircraft = aircraftResponse
+//        models = typesResponse
+//    }
+    
+    func loadAircraft() async {
+        guard let url = URL(string: "https://jasonkoehn.github.io/AirlineData/"+alias+".json") else {
+            print("Invalid URL")
+            return
+        }
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data) {
+                aircraft = decodedResponse.aircraft
+                models = decodedResponse.models
+                print(aircraft)
+                print(models)
+            }
+        } catch {
+            print("Invalid data")
+        }
+    }
+    
+//    func saveAircraft() {
+//        let manager = FileManager.default
+//        guard let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
+//        let aircraftFileUrl = url.appendingPathComponent(alias+".plist")
+//        let typesFileUrl = url.appendingPathComponent(alias+"types.plist")
+//        manager.createFile(atPath: aircraftFileUrl.path, contents: nil, attributes: nil)
+//        manager.createFile(atPath: typesFileUrl.path, contents: nil, attributes: nil)
+//        let encoder = PropertyListEncoder()
+//        let encodedAircraft = try! encoder.encode(airlinesBeforeSave)
+//        let encodedTypes = try! encoder.encode(modelsBeforeSave)
+//        try! encodedAircraft.write(to: aircraftFileUrl)
+//        try! encodedTypes.write(to: typesFileUrl)
 //    }
 }
 
@@ -120,37 +151,6 @@ struct Aircraft: Codable {
     var msn: Int
     var ln: Int
     var fn: Int
-}
-
-var aircraftBeforeSave = [Aircraft]()
-var modelsBeforeSave = [Models]()
-
-func loadAircraft() async {
-    guard let url = URL(string: "https://jasonkoehn.github.io/AirlineData/"+FleetView.alias+".json") else {
-        print("Invalid URL")
-        return
-    }
-    do {
-        let (data, _) = try await URLSession.shared.data(from: url)
-        if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data) {
-            aircraftBeforeSave = decodedResponse.aircraft
-            modelsBeforeSave = decodedResponse.models
-            print(aircraftBeforeSave)
-            print(modelsBeforeSave)
-        }
-    } catch {
-        print("Invalid data")
-    }
-}
-
-func saveAircraft() {
-    let manager = FileManager.default
-    guard let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
-    let fileUrl = url.appendingPathComponent(FleetView.alias+".plist")
-    manager.createFile(atPath: fileUrl.path, contents: nil, attributes: nil)
-    let encoder = PropertyListEncoder()
-    let encodedData = try! encoder.encode(airlinesBeforeSave)
-    try! encodedData.write(to: fileUrl)
 }
 
 

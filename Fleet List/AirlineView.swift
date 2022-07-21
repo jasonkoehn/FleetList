@@ -81,5 +81,4 @@ struct AirlineView_Previews: PreviewProvider {
         AirlineView(name: "Southwest Airlines", country: "United States", website: "southwest.com", iata: "WN", icao: "SWA", callsign: "SOUTHWEST", alias: "SouthwestAirlines", fleetsize: 735)
     }
 }
-// AveloAir
-//SouthwestAirlines
+
