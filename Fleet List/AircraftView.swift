@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AircraftView: View {
     var name: String
-    var alias: String
     var type: String
     var model: String
     var registration: String
@@ -18,9 +17,14 @@ struct AircraftView: View {
     var msn: Int
     var ln: Int
     var fn: Int
+    var firstflight: String
+    @State var decodedDate = ""
+    @State var decodedFirstFlight = ""
+    @State var years = 0
+    @State var months = 0
     var body: some View {
         VStack {
-            Image(alias)
+            Image(name)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(4)
@@ -40,7 +44,7 @@ struct AircraftView: View {
                             .italic()
                         Spacer()
                     }
-                    .frame(width: 115)
+                    .frame(width: 130)
                     Text(name)
                         .font(.system(size: 25))
                     Spacer()
@@ -52,9 +56,36 @@ struct AircraftView: View {
                             .italic()
                         Spacer()
                     }
-                    .frame(width: 115)
+                    .frame(width: 130)
                     Text(type)
                         .font(.system(size: 25))
+                    Spacer()
+                }
+                HStack {
+                    HStack {
+                        Text("First Flight:")
+                            .font(.system(size: 25))
+                            .italic()
+                        Spacer()
+                    }
+                    .frame(width: 130)
+                    Text(decodedFirstFlight)
+                        .font(.system(size: 25))
+                    Spacer()
+                }
+                HStack {
+                    HStack {
+                        Text("Age:")
+                            .font(.system(size: 25))
+                            .italic()
+                        Spacer()
+                    }
+                    .frame(width: 130)
+                    Text("\(years) years")
+                        .font(.system(size: 25))
+                    Text("\(months) months")
+                        .font(.system(size: 25))
+                        .padding(.horizontal)
                     Spacer()
                 }
                 HStack {
@@ -64,8 +95,8 @@ struct AircraftView: View {
                             .italic()
                         Spacer()
                     }
-                    .frame(width: 115)
-                    Text(delivery_date)
+                    .frame(width: 130)
+                    Text(decodedDate)
                         .font(.system(size: 25))
                     Spacer()
                 }
@@ -76,7 +107,7 @@ struct AircraftView: View {
                             .italic()
                         Spacer()
                     }
-                    .frame(width: 115)
+                    .frame(width: 130)
                     Text(hex)
                         .font(.system(size: 25))
                     Spacer()
@@ -88,7 +119,7 @@ struct AircraftView: View {
                             .italic()
                         Spacer()
                     }
-                    .frame(width: 115)
+                    .frame(width: 130)
                     Text(verbatim: "\(msn)")
                     
                         .font(.system(size: 25))
@@ -102,7 +133,7 @@ struct AircraftView: View {
                                 .italic()
                             Spacer()
                         }
-                        .frame(width: 115)
+                        .frame(width: 130)
                         Text(verbatim: "\(ln)")
                             .font(.system(size: 25))
                         Spacer()
@@ -115,21 +146,50 @@ struct AircraftView: View {
                             .italic()
                         Spacer()
                     }
-                    .frame(width: 115)
+                    .frame(width: 130)
                     Text(verbatim: "\(fn)")
                         .font(.system(size: 25))
                     Spacer()
                 }
             }
             .listStyle(PlainListStyle())
-            .disabled(true)
+//            .disabled(true)
             Spacer()
         }
+        .task {
+            convertDate()
+            convertToTime()
+        }
+    }
+    func convertDate() {
+        let fmt = DateFormatter()
+        fmt.locale = Locale(identifier: "en_US_POSIX")
+        fmt.dateFormat = "yyyy-MM-dd"
+        
+        let dt = fmt.date(from: delivery_date)!
+        
+        fmt.dateFormat = "MMM d, yyyy"
+        decodedDate = fmt.string(from: dt)
+    }
+    func convertToTime() {
+        let fmt = DateFormatter()
+        fmt.locale = Locale(identifier: "en_US_POSIX")
+        fmt.dateFormat = "yyyy-MM-dd"
+        
+        let dt = fmt.date(from: firstflight)!
+        let tdt = Date()
+        
+        fmt.dateFormat = "MMM d, yyyy"
+        decodedFirstFlight = fmt.string(from: dt)
+        
+        let diffs = Calendar.current.dateComponents([.year, .month, .day], from: dt, to: tdt)
+        years = diffs.year!
+        months = diffs.month!
     }
 }
 
 struct AircraftView_Previews: PreviewProvider {
     static var previews: some View {
-        AircraftView(name: "Southwest Airlines", alias: "SouthwestAirlines", type: "B38M", model: "Boeing 737 MAX 8", registration: "N8707P", delivery_date: "2017-09-25", hex: "ABF9B1", msn: 36929, ln: 5992, fn: 8707)
+        AircraftView(name: "Southwest Airlines", type: "B38M", model: "Boeing 737 MAX 8", registration: "N8707P", delivery_date: "2017-09-25", hex: "ABF9B1", msn: 36929, ln: 5992, fn: 8707, firstflight: "aircraft.firstflight")
     }
 }

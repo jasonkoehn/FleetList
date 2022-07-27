@@ -14,11 +14,10 @@ struct AirlineView: View {
     var iata: String
     var icao: String
     var callsign: String
-    var alias: String
     var fleetsize: Int
     var body: some View {
         VStack {
-            Image(alias)
+            Image(name)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(4)
@@ -72,13 +71,11 @@ struct AirlineView: View {
                 }.padding(3)
             Spacer()
         }
-        
     }
 }
 
 struct AirlineView_Previews: PreviewProvider {
     static var previews: some View {
-        AirlineView(name: "Southwest Airlines", country: "United States", website: "southwest.com", iata: "WN", icao: "SWA", callsign: "SOUTHWEST", alias: "SouthwestAirlines", fleetsize: 735)
+        AirlineView(name: "Southwest Airlines", country: "United States", website: "southwest.com", iata: "WN", icao: "SWA", callsign: "SOUTHWEST", fleetsize: 735)
     }
 }
-

@@ -1,40 +1,29 @@
 //
-//  AirlinesView.swift
+//  AirlineListView.swift
 //  Fleet List
 //
-//  Created by Jason Koehn on 6/29/22.
+//  Created by Jason Koehn on 7/26/22.
 //
 
 import SwiftUI
 
-struct AirlinesView: View {
+struct AirlineListView: View {
     @State var airlines: [Airline] = []
     @State var countries: [Country] = []
-    @State var sortByCountry = true
     var body: some View {
         List {
             ForEach(countries, id: \.name) { country in
                 Section(country.name) {
                     ForEach(airlines, id: \.name) { airlines in
                         if airlines.country == country.name {
-                            NavigationLink(destination: FleetView(name: airlines.name, country: airlines.country, website: airlines.website, iata: airlines.iata, icao: airlines.icao, callsign: airlines.callsign, alias: airlines.alias)) {
+                            NavigationLink(destination: AirlineFleetView(name: airlines.name, country: airlines.country, website: airlines.website, iata: airlines.iata, icao: airlines.icao, callsign: airlines.callsign, types: airlines.types)) {
                                 Text(airlines.name)
                                     .font(.system(size: 23))
                             }
                         }
                     }
                 }
-            } 
-//            Button(action: {
-//                let encoder = JSONEncoder()
-//                guard let encoded = try? encoder.encode(airlines) else {
-//                    print("Failed to encode order")
-//                    return
-//                }
-//                print(String(data: encoded, encoding: .utf8)!)
-//            }){
-//                Text("Send")
-//            }
+            }
         }
         .task {
             loadCountries()
@@ -50,7 +39,10 @@ struct AirlinesView: View {
                 await loadAirlinesfromapi()
                 saveAirlines()
                 loadAirlines()
-                
+                await loadAircraftfromapi()
+                saveAircraft()
+                await loadTypesfromapi()
+                saveTypes()
             }
         }
     }
@@ -63,9 +55,8 @@ struct AirlinesView: View {
         let response = try! decoder.decode([Airline].self, from: data)
         airlines = response
         airlines.sort {
-            $0.alias < $1.alias
+            $0.name < $1.name
         }
-        print(airlines)
     }
     func loadCountries() {
         let manager = FileManager.default
@@ -78,12 +69,11 @@ struct AirlinesView: View {
         countries.sort {
             $0.name < $1.name
         }
-        print(countries)
     }
 }
 
-struct AirlinesView_Previews: PreviewProvider {
+struct AirlineListView_Previews: PreviewProvider {
     static var previews: some View {
-        AirlinesView()
+        AirlineListView()
     }
 }

@@ -15,12 +15,15 @@ struct Fleet_ListApp: App {
             saveCountries()
             await loadAirlinesfromapi()
             saveAirlines()
-            
+            await loadAircraftfromapi()
+            saveAircraft()
+            await loadTypesfromapi()
+            saveTypes()
         }
     }
     var body: some Scene {
         WindowGroup {
-            UserView()
+            AppView()
         }
     }
 }

@@ -1,13 +1,13 @@
 //
-//  UserView.swift
+//  AppView.swift
 //  Fleet List
 //
-//  Created by Jason Koehn on 7/14/22.
+//  Created by Jason Koehn on 7/26/22.
 //
 
 import SwiftUI
 
-struct UserView: View {
+struct AppView: View {
     @AppStorage("Launched") var appLaunched = false
     var body: some View {
         if appLaunched == false {
@@ -15,23 +15,24 @@ struct UserView: View {
         } else {
             TabView {
                 NavigationView {
-                    AirlinesView()
+                    AirlineListView()
                 }
                 .tabItem {
                     Image(systemName: "airplane")
                 }
                 NavigationView {
-//                    SendView()
+                    AircraftListView()
                 }.tabItem {
-                    Image(systemName: "gear")
+                    Image(systemName: "airplane.circle")
                 }
             }
         }
     }
 }
 
-struct UserView_Previews: PreviewProvider {
+
+struct AppView_Previews: PreviewProvider {
     static var previews: some View {
-        UserView()
+        AppView()
     }
 }
