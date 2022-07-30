@@ -1,25 +1,22 @@
 //
-//  AirlineListView.swift
+//  AirlinesByCountryView.swift
 //  Fleet List
 //
-//  Created by Jason Koehn on 7/26/22.
+//  Created by Jason Koehn on 7/30/22.
 //
 
 import SwiftUI
 
-struct AirlineListView: View {
+struct AirlinesByCountryView: View {
     @State var airlines: [Airline] = []
+    var countryName: String
     var body: some View {
         List {
-            ForEach(alphabet, id: \.self) { alphabet in
-                Section(alphabet) {
-                    ForEach(airlines, id: \.name) { airlines in
-                        if airlines.name.first?.uppercased() == alphabet {
-                            NavigationLink(destination: AirlineFleetView(name: airlines.name, country: airlines.country, website: airlines.website, iata: airlines.iata, icao: airlines.icao, callsign: airlines.callsign, types: airlines.types)) {
-                                Text(airlines.name)
-                                    .font(.system(size: 23))
-                            }
-                        }
+            ForEach(airlines, id: \.name) { airlines in
+                if airlines.country == countryName {
+                    NavigationLink(destination: AirlineFleetView(name: airlines.name, country: airlines.country, website: airlines.website, iata: airlines.iata, icao: airlines.icao, callsign: airlines.callsign, types: airlines.types)) {
+                        Text(airlines.name)
+                            .font(.system(size: 23))
                     }
                 }
             }
@@ -28,7 +25,7 @@ struct AirlineListView: View {
         .task {
             loadAirlines()
         }
-        .navigationTitle("Airlines")
+        .navigationTitle(countryName)
         .refreshable {
             Task {
                 await loadAirlinesfromapi()
@@ -55,11 +52,5 @@ struct AirlineListView: View {
                 loadAirlines()
             }
         }
-    }
-}
-
-struct AirlineListView_Previews: PreviewProvider {
-    static var previews: some View {
-        AirlineListView()
     }
 }

@@ -8,28 +8,24 @@
 import SwiftUI
 
 struct AppView: View {
-    @AppStorage("Launched") var appLaunched = false
     var body: some View {
-        if appLaunched == false {
-            LaunchView()
-        } else {
-            TabView {
-                NavigationView {
-                    AirlineListView()
-                }
-                .tabItem {
-                    Image(systemName: "airplane")
-                }
-                NavigationView {
-                    AircraftListView()
-                }.tabItem {
-                    Image(systemName: "airplane.circle")
-                }
+        TabView {
+            NavigationView {
+                AirlineListView()
+            }
+            .tabItem {
+                Image(systemName: "airplane")
+                Text("Airlines")
+            }
+            NavigationView {
+                CountriesListView()
+            }.tabItem {
+                Image(systemName: "list.bullet")
+                Text("Countries")
             }
         }
     }
 }
-
 
 struct AppView_Previews: PreviewProvider {
     static var previews: some View {

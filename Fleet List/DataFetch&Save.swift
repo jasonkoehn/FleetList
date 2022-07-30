@@ -24,12 +24,13 @@ struct Types: Codable {
 }
 
 struct Aircraft: Codable {
-    var operater: String
+    var airline: String
     var type: String
     var registration: String
-    var deliverydate: String
     var firstflight: String
+    var delivery: String
     var hex: String
+    var config: String
     var msn: Int
     var ln: Int
     var fn: Int
@@ -44,7 +45,8 @@ struct Country: Codable {
 var airlinesBeforeSave: [Airline] = []
 var countriesBeforeSave: [Country] = []
 var aircraftBeforeSave: [Aircraft] = []
-var typesBeforeSave: [Types] = []
+var alphabet: [String] = ["A", "B", "D", "F", "H", "J", "L", "P", "S", "U", "W"]
+var leftovers = ["C", "E", "G", "I", "K", "M", "N", "O", "Q", "R", "T", "V", "X", "Y", "Z"]
 
 
 // Load from API Functions
@@ -93,21 +95,6 @@ func loadCountriesfromapi() async {
     }
 }
 
-func loadTypesfromapi() async {
-    guard let url = URL(string: "https://jasonkoehn.github.io/FleetList/Types.json") else {
-        print("Invalid URL")
-        return
-    }
-    do {
-        let (data, _) = try await URLSession.shared.data(from: url)
-        if let decodedResponse = try? JSONDecoder().decode([Types].self, from: data) {
-            typesBeforeSave = decodedResponse
-        }
-    } catch {
-        print("Invalid data")
-    }
-}
-
 // Save to FileManangerFunctions
 func saveAirlines() {
     let manager = FileManager.default
@@ -136,16 +123,6 @@ func saveCountries() {
     manager.createFile(atPath: fileUrl.path, contents: nil, attributes: nil)
     let encoder = PropertyListEncoder()
     let encodedData = try! encoder.encode(countriesBeforeSave)
-    try! encodedData.write(to: fileUrl)
-}
-
-func saveTypes() {
-    let manager = FileManager.default
-    guard let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
-    let fileUrl = url.appendingPathComponent("types.plist")
-    manager.createFile(atPath: fileUrl.path, contents: nil, attributes: nil)
-    let encoder = PropertyListEncoder()
-    let encodedData = try! encoder.encode(typesBeforeSave)
     try! encodedData.write(to: fileUrl)
 }
 

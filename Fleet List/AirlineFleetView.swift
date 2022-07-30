@@ -18,7 +18,7 @@ struct AirlineFleetView: View {
     var types: [Types] = []
     var body: some View {
         VStack {
-            NavigationLink(destination: {AirlineView(name: name, country: country, website: website, iata: iata, icao: icao, callsign: callsign, fleetsize: 9)}) {
+            NavigationLink(destination: {AirlineView(name: name, country: country, website: website, iata: iata, icao: icao, callsign: callsign, fleetsize: aircraft.count)}) {
                 VStack {
                     Image(name)
                         .resizable()
@@ -50,8 +50,8 @@ struct AirlineFleetView: View {
                 ForEach(types, id: \.type) { types in
                     Section(types.model) {
                         ForEach(aircraft, id: \.hex) { aircraft in
-                            if aircraft.operater == name && aircraft.type == types.type {
-                                NavigationLink(destination: {AircraftView(name: name, type: aircraft.type, model: types.model, registration: aircraft.registration, deliverydate: aircraft.deliverydate, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn, firstflight: aircraft.firstflight)}) {
+                            if aircraft.airline == name && aircraft.type == types.type {
+                                NavigationLink(destination: {AircraftView(name: name, type: aircraft.type, model: types.model, registration: aircraft.registration, deliverydate: aircraft.delivery, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn, firstflight: aircraft.firstflight)}) {
                                     HStack {
                                         HStack {
                                             Text(aircraft.registration)
@@ -85,13 +85,19 @@ struct AirlineFleetView: View {
         let manager = FileManager.default
         guard let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
         let fileUrl = url.appendingPathComponent("aircraft.plist")
-        let data = try! Data(contentsOf: fileUrl)
-        let decoder = PropertyListDecoder()
-        let response = try! decoder.decode([Aircraft].self, from: data)
-        aircraft = response
-        aircraft.sort {
-            $0.registration < $1.registration
+        if let data = try? Data(contentsOf: fileUrl) {
+            let decoder = PropertyListDecoder()
+            let response = try! decoder.decode([Aircraft].self, from: data)
+            aircraft = response
+            aircraft.sort {
+                $0.registration < $1.registration
+            }
+        } else {
+            Task {
+                await loadAircraftfromapi()
+                saveAircraft()
+                loadAircraft()
+            }
         }
-        
     }
 }
