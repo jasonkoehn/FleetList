@@ -127,7 +127,6 @@ func saveCountries() {
     try! encodedData.write(to: fileUrl)
 }
 
-
 //Button(action: {
 //    let encoder = JSONEncoder()
 //    encoder.outputFormatting = .prettyPrinted

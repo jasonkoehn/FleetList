@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8731688E2890B9D700032C61 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731688D2890B9D700032C61 /* AppView.swift */; };
 		873168902890BA0F00032C61 /* AirlineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731688F2890BA0F00032C61 /* AirlineListView.swift */; };
-		873168922890BA2E00032C61 /* AirlineFleetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873168912890BA2E00032C61 /* AirlineFleetView.swift */; };
 		873168962890BA5600032C61 /* DataFetch&Save.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873168952890BA5600032C61 /* DataFetch&Save.swift */; };
 		87353045286CDBFD007A9160 /* AircraftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87353044286CDBFD007A9160 /* AircraftView.swift */; };
 		87494CCE2895EF670024CA24 /* CountriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87494CCD2895EF670024CA24 /* CountriesListView.swift */; };
@@ -23,7 +22,6 @@
 /* Begin PBXFileReference section */
 		8731688D2890B9D700032C61 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		8731688F2890BA0F00032C61 /* AirlineListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirlineListView.swift; sourceTree = "<group>"; };
-		873168912890BA2E00032C61 /* AirlineFleetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirlineFleetView.swift; sourceTree = "<group>"; };
 		873168952890BA5600032C61 /* DataFetch&Save.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataFetch&Save.swift"; sourceTree = "<group>"; };
 		87353044286CDBFD007A9160 /* AircraftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AircraftView.swift; sourceTree = "<group>"; };
 		87494CCD2895EF670024CA24 /* CountriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListView.swift; sourceTree = "<group>"; };
@@ -34,6 +32,7 @@
 		8778207C286C9E9F00614B24 /* Fleet_List.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fleet_List.entitlements; sourceTree = "<group>"; };
 		8778207E286C9E9F00614B24 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		87A4AC072881054400909EC2 /* AirlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirlineView.swift; sourceTree = "<group>"; };
+		87C40A0C2897369F00BE40FF /* Fleet-List-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Fleet-List-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,12 +65,12 @@
 		87782075286C9E9E00614B24 /* Fleet List */ = {
 			isa = PBXGroup;
 			children = (
+				87C40A0C2897369F00BE40FF /* Fleet-List-Info.plist */,
 				87782076286C9E9E00614B24 /* Fleet_ListApp.swift */,
 				8731688D2890B9D700032C61 /* AppView.swift */,
 				8731688F2890BA0F00032C61 /* AirlineListView.swift */,
 				87494CCD2895EF670024CA24 /* CountriesListView.swift */,
 				87494CCF2895F0300024CA24 /* AirlinesByCountryView.swift */,
-				873168912890BA2E00032C61 /* AirlineFleetView.swift */,
 				87A4AC072881054400909EC2 /* AirlineView.swift */,
 				87353044286CDBFD007A9160 /* AircraftView.swift */,
 				873168952890BA5600032C61 /* DataFetch&Save.swift */,
@@ -168,7 +167,6 @@
 				873168902890BA0F00032C61 /* AirlineListView.swift in Sources */,
 				87494CCE2895EF670024CA24 /* CountriesListView.swift in Sources */,
 				873168962890BA5600032C61 /* DataFetch&Save.swift in Sources */,
-				873168922890BA2E00032C61 /* AirlineFleetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,9 +295,11 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Fleet-List-Info.plist";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
@@ -330,9 +330,11 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Fleet-List-Info.plist";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;

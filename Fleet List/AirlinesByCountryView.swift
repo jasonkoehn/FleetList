@@ -12,15 +12,15 @@ struct AirlinesByCountryView: View {
     var countryName: String
     var body: some View {
         List {
-            ForEach(airlines, id: \.name) { airlines in
-                if airlines.country == countryName {
-                    NavigationLink(destination: AirlineFleetView(name: airlines.name, country: airlines.country, website: airlines.website, iata: airlines.iata, icao: airlines.icao, callsign: airlines.callsign, types: airlines.types)) {
+            ForEach(airlines, id: \.name) { airline in
+                if airline.country == countryName {
+                    NavigationLink(destination: AirlineView(name: airline.name, country: airline.country, website: airline.website, iata: airline.iata, icao: airline.icao, callsign: airline.callsign, fleetsize: airline.fleetsize, types: airline.types)) {
                         HStack {
-                            Image(airlines.name)
+                            Image(airline.name)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 50)
-                            Text(airlines.name)
+                            Text(airline.name)
                                 .font(.system(size: 23))
                         }
                     }
