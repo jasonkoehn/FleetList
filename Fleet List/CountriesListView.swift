@@ -13,18 +13,32 @@ struct CountriesListView: View {
         List {
             ForEach(countries, id: \.name) { country in
                 NavigationLink(destination: {AirlinesByCountryView(countryName: country.name)}) {
-                    Text(country.name)
-                        .font(.system(size: 20))
+                    HStack {
+                        Image(country.name)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 40)
+                        Text(country.name)
+                            .font(.system(size: 20))
+                    }
                 }
             }
         }
         .listStyle(PlainListStyle())
         .navigationTitle("Countries")
+        .task {
+            loadCountries()
+        }
+        .refreshable {
+            await loadCountriesfromapi()
+            saveCountries()
+            loadCountries()
+        }
     }
     func loadCountries() {
         let manager = FileManager.default
         guard let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
-        let fileUrl = url.appendingPathComponent("airlines.plist")
+        let fileUrl = url.appendingPathComponent("countries.plist")
         if let data = try? Data(contentsOf: fileUrl) {
             let decoder = PropertyListDecoder()
             let response = try! decoder.decode([Country].self, from: data)

@@ -15,11 +15,17 @@ struct AirlinesByCountryView: View {
             ForEach(airlines, id: \.name) { airlines in
                 if airlines.country == countryName {
                     NavigationLink(destination: AirlineFleetView(name: airlines.name, country: airlines.country, website: airlines.website, iata: airlines.iata, icao: airlines.icao, callsign: airlines.callsign, types: airlines.types)) {
-                        Text(airlines.name)
-                            .font(.system(size: 23))
+                        HStack {
+                            Image(airlines.name)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 50)
+                            Text(airlines.name)
+                                .font(.system(size: 23))
+                        }
                     }
                 }
-            }
+            }.frame(height: 30)
         }
         .listStyle(PlainListStyle())
         .task {
