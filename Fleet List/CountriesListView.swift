@@ -22,7 +22,7 @@ struct CountriesListView: View {
                             .font(.system(size: 20))
                     }
                 }
-            }
+            }.frame(height: 30)
         }
         .listStyle(PlainListStyle())
         .navigationTitle("Countries")

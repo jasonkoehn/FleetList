@@ -13,15 +13,15 @@ struct AirlineListView: View {
         List {
             ForEach(alphabet, id: \.self) { alphabet in
                 Section(alphabet) {
-                    ForEach(airlines, id: \.name) { airlines in
-                        if airlines.name.first?.uppercased() == alphabet {
-                            NavigationLink(destination: AirlineFleetView(name: airlines.name, country: airlines.country, website: airlines.website, iata: airlines.iata, icao: airlines.icao, callsign: airlines.callsign, types: airlines.types)) {
+                    ForEach(airlines, id: \.name) { airline in
+                        if airline.name.first?.uppercased() == alphabet {
+                            NavigationLink(destination: AirlineView(name: airline.name, country: airline.country, website: airline.website, iata: airline.iata, icao: airline.icao, callsign: airline.callsign, fleetsize: airline.fleetsize, types: airline.types)) {
                                 HStack {
-                                    Image(airlines.name)
+                                    Image(airline.name)
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 50)
-                                    Text(airlines.name)
+                                    Text(airline.name)
                                         .font(.system(size: 23))
                                 }
                             }

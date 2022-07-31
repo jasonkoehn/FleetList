@@ -15,6 +15,7 @@ struct Airline: Codable {
     var iata: String
     var icao: String
     var callsign: String
+    var fleetsize: Int
     var types: [Types]
 }
 

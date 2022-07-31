@@ -15,62 +15,41 @@ struct AirlineView: View {
     var icao: String
     var callsign: String
     var fleetsize: Int
+    var types: [Types] = []
     var body: some View {
         VStack {
             Image(name)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(4)
-                .frame(height: 150)
-                .padding(10)
-            Text(name)
-                .font(.title)
-                .padding(.bottom)
-                .padding(.horizontal)
-                HStack {
-                    Spacer()
-                    Text("IATA")
-                        .italic()
-                        .font(.headline)
-                    Text(iata)
-                        .font(.system(size: 20))
-                    Spacer()
-                    Text("ICOA")
-                        .italic()
-                        .font(.headline)
-                    Text(icao)
-                        .font(.system(size: 20))
-                    Spacer()
+                .frame(height: 80)
+                .padding(.horizontal, 10)
+            HStack {
+                Spacer()
+                Text("IATA")
+                    .italic()
+                    .font(.subheadline)
+                Text(iata)
+                Spacer()
+                Text("ICOA")
+                    .italic()
+                    .font(.subheadline)
+                Text(icao)
+                Spacer()
+                Text("Callsign")
+                    .italic()
+                    .font(.subheadline)
+                Text(callsign)
+                Spacer()
+            }
+            List {
+                Text("All")
+                ForEach(types, id: \.type) { types in
+                    Text(types.model)
                 }
-                HStack {
-                    Spacer()
-                    Text("CALLSIGN")
-                        .italic()
-                        .font(.headline)
-                    Text(callsign)
-                        .font(.system(size: 20))
-                    Spacer()
-                }.padding(3)
-                HStack {
-                    Spacer()
-                    Text("Website")
-                        .italic()
-                        .font(.headline)
-                    Link(website, destination: URL(string: "https://www." + website)!)
-                        .font(.system(size: 22))
-                    Spacer()
-                }
-                HStack {
-                    Spacer()
-                    Text("Fleet Size")
-                        .italic()
-                        .font(.headline)
-                    Text("\(fleetsize)")
-                        .font(.system(size: 20))
-                    Spacer()
-                }.padding(3)
-            Spacer()
+            }.listStyle(PlainListStyle())
         }
+        .navigationTitle(name)
     }
 }
 
