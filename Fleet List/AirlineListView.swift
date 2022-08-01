@@ -9,12 +9,13 @@ import SwiftUI
 
 struct AirlineListView: View {
     @State var airlines: [Airline] = []
+    @State var alphabet: [Letter] = []
     var body: some View {
         List {
-            ForEach(alphabet, id: \.self) { alphabet in
-                Section(alphabet) {
+            ForEach(alphabet, id: \.letter) { alphabet in
+                Section(alphabet.letter) {
                     ForEach(airlines, id: \.name) { airline in
-                        if airline.name.first?.uppercased() == alphabet {
+                        if airline.name.first?.uppercased() == alphabet.letter {
                             NavigationLink(destination: AirlineView(name: airline.name, country: airline.country, website: airline.website, iata: airline.iata, icao: airline.icao, callsign: airline.callsign, fleetsize: airline.fleetsize, types: airline.types)) {
                                 HStack {
                                     Image(airline.name)
@@ -33,6 +34,7 @@ struct AirlineListView: View {
         .listStyle(PlainListStyle())
         .task {
             loadAirlines()
+            loadLetters()
         }
         .navigationTitle("Airlines")
         .refreshable {
@@ -40,6 +42,10 @@ struct AirlineListView: View {
                 await loadAirlinesfromapi()
                 saveAirlines()
                 loadAirlines()
+                await loadAircraftfromapi()
+                saveAircraft()
+                await loadUtilitiesfromapi()
+                loadLetters()
             }
         }
     }
@@ -59,6 +65,21 @@ struct AirlineListView: View {
                 await loadAirlinesfromapi()
                 saveAirlines()
                 loadAirlines()
+            }
+        }
+    }
+    func loadLetters() {
+        let manager = FileManager.default
+        guard let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
+        let fileUrl = url.appendingPathComponent("letters.plist")
+        if let data = try? Data(contentsOf: fileUrl) {
+            let decoder = PropertyListDecoder()
+            let response = try! decoder.decode([Letter].self, from: data)
+            alphabet = response
+        } else {
+            Task {
+                await loadUtilitiesfromapi()
+                loadLetters()
             }
         }
     }

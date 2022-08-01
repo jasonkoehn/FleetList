@@ -32,7 +32,6 @@
 		8778207C286C9E9F00614B24 /* Fleet_List.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fleet_List.entitlements; sourceTree = "<group>"; };
 		8778207E286C9E9F00614B24 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		87A4AC072881054400909EC2 /* AirlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirlineView.swift; sourceTree = "<group>"; };
-		87C40A0C2897369F00BE40FF /* Fleet-List-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Fleet-List-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +64,6 @@
 		87782075286C9E9E00614B24 /* Fleet List */ = {
 			isa = PBXGroup;
 			children = (
-				87C40A0C2897369F00BE40FF /* Fleet-List-Info.plist */,
 				87782076286C9E9E00614B24 /* Fleet_ListApp.swift */,
 				8731688D2890B9D700032C61 /* AppView.swift */,
 				8731688F2890BA0F00032C61 /* AirlineListView.swift */,

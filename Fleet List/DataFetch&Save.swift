@@ -35,19 +35,26 @@ struct Aircraft: Codable {
     var msn: Int
     var ln: Int
     var fn: Int
+    var site: String
+}
+
+struct Utilities: Codable {
+    var countries: [Country]
+    var letters: [Letter]
 }
 
 struct Country: Codable {
     var name: String
 }
 
+struct Letter: Codable {
+    var letter: String
+}
+
 
 // Data Arrays
 var airlinesBeforeSave: [Airline] = []
-var countriesBeforeSave: [Country] = []
 var aircraftBeforeSave: [Aircraft] = []
-var alphabet: [String] = ["A", "B", "D", "F", "H", "J", "L", "P", "S", "U", "W"]
-var leftovers = ["C", "E", "G", "I", "K", "M", "N", "O", "Q", "R", "T", "V", "X", "Y", "Z"]
 
 
 // Load from API Functions
@@ -81,15 +88,27 @@ func loadAircraftfromapi() async {
     }
 }
 
-func loadCountriesfromapi() async {
-    guard let url = URL(string: "https://jasonkoehn.github.io/FleetList/Countries.json") else {
+func loadUtilitiesfromapi() async {
+    guard let url = URL(string: "https://jasonkoehn.github.io/FleetList/Utilities.json") else {
         print("Invalid URL")
         return
     }
     do {
         let (data, _) = try await URLSession.shared.data(from: url)
-        if let decodedResponse = try? JSONDecoder().decode([Country].self, from: data) {
-            countriesBeforeSave = decodedResponse
+        if let decodedResponse = try? JSONDecoder().decode(Utilities.self, from: data) {
+            let manager = FileManager.default
+            let encoder = PropertyListEncoder()
+            guard let file = manager.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
+            
+            let countriesUrl = file.appendingPathComponent("countries.plist")
+            manager.createFile(atPath: countriesUrl.path, contents: nil, attributes: nil)
+            let encodedCountries = try! encoder.encode(decodedResponse.countries)
+            try! encodedCountries.write(to: countriesUrl)
+            
+            let lettersUrl = file.appendingPathComponent("letters.plist")
+            manager.createFile(atPath: lettersUrl.path, contents: nil, attributes: nil)
+            let encodedLetters = try! encoder.encode(decodedResponse.letters)
+            try! encodedLetters.write(to: lettersUrl)
         }
     } catch {
         print("Invalid data")
@@ -114,16 +133,6 @@ func saveAircraft() {
     manager.createFile(atPath: fileUrl.path, contents: nil, attributes: nil)
     let encoder = PropertyListEncoder()
     let encodedData = try! encoder.encode(aircraftBeforeSave)
-    try! encodedData.write(to: fileUrl)
-}
-
-func saveCountries() {
-    let manager = FileManager.default
-    guard let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first else {return}
-    let fileUrl = url.appendingPathComponent("countries.plist")
-    manager.createFile(atPath: fileUrl.path, contents: nil, attributes: nil)
-    let encoder = PropertyListEncoder()
-    let encodedData = try! encoder.encode(countriesBeforeSave)
     try! encodedData.write(to: fileUrl)
 }
 

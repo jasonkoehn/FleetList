@@ -30,8 +30,7 @@ struct CountriesListView: View {
             loadCountries()
         }
         .refreshable {
-            await loadCountriesfromapi()
-            saveCountries()
+            await loadUtilitiesfromapi()
             loadCountries()
         }
     }
@@ -48,8 +47,7 @@ struct CountriesListView: View {
             }
         } else {
             Task {
-                await loadCountriesfromapi()
-                saveCountries()
+                await loadUtilitiesfromapi()
                 loadCountries()
             }
         }

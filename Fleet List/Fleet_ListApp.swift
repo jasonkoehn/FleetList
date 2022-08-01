@@ -11,8 +11,7 @@ import SwiftUI
 struct Fleet_ListApp: App {
     init() {
         Task {
-            await loadCountriesfromapi()
-            saveCountries()
+            await loadUtilitiesfromapi()
             await loadAirlinesfromapi()
             saveAirlines()
             await loadAircraftfromapi()

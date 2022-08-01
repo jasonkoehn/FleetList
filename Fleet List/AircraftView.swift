@@ -18,147 +18,101 @@ struct AircraftView: View {
     var ln: Int
     var fn: Int
     var firstflight: String
+    var productionSite: String
+    var config: String
+    @State var productionAirport = ""
+    @State var productionCountry = ""
     @State var decodedDate = ""
     @State var decodedFirstFlight = ""
     @State var years = 0
     @State var months = 0
     var body: some View {
         VStack {
+            Text(registration)
+                .font(.system(size: 60))
+                .padding(1)
             Image(name)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(4)
-                .padding(.horizontal)
-                .frame(height: 100)
-            Text(registration)
-                .font(.system(size: 50))
-                .padding(15)
-            Text(model)
-                .font(.system(size: 35))
-                .padding(.bottom)
-            List {
+                .frame(height: 60)
+                .padding(.bottom, 5)
+            HStack {
+                Spacer()
+                Text(model)
+                    .font(.system(size: 30))
+                Text("("+type+")")
+                    .font(.system(size: 20))
+                    .italic()
+                Spacer()
+            }.padding(.bottom)
+            VStack {
                 HStack {
-                    HStack {
-                        Text("Operator:")
-                            .font(.system(size: 25))
-                            .italic()
-                        Spacer()
-                    }
-                    .frame(width: 130)
-                    Text(name)
-                        .font(.system(size: 25))
-                    Spacer()
+                    Image(productionCountry)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 40)
+                    Text(productionAirport+"("+productionSite+")")
+                        .font(.system(size: 20))
                 }
                 HStack {
-                    HStack {
-                        Text("Type:")
-                            .font(.system(size: 25))
-                            .italic()
-                        Spacer()
-                    }
-                    .frame(width: 130)
-                    Text(type)
-                        .font(.system(size: 25))
-                    Spacer()
+                    Text("Config:")
+                        .font(.system(size: 20))
+                        .italic()
+                    Text(config)
+                        .font(.system(size: 20))
                 }
                 HStack {
-                    HStack {
+                    Spacer()
+                    VStack {
+                        Spacer()
                         Text("First Flight:")
-                            .font(.system(size: 25))
+                            .font(.system(size: 20))
                             .italic()
                         Spacer()
-                    }
-                    .frame(width: 130)
-                    Text(decodedFirstFlight)
-                        .font(.system(size: 25))
-                    Spacer()
-                }
-                HStack {
-                    HStack {
-                        Text("Age:")
-                            .font(.system(size: 25))
-                            .italic()
+                        Text(decodedFirstFlight)
+                            .font(.system(size: 20))
                         Spacer()
                     }
-                    .frame(width: 130)
-                    Text("\(years) years")
-                        .font(.system(size: 25))
-                    Text("\(months) months")
-                        .font(.system(size: 25))
-                        .padding(.horizontal)
                     Spacer()
-                }
-                HStack {
-                    HStack {
-                        Text("Delivery:")
-                            .font(.system(size: 25))
-                            .italic()
+                    VStack {
                         Spacer()
-                    }
-                    .frame(width: 130)
-                    Text(decodedDate)
-                        .font(.system(size: 25))
-                    Spacer()
-                }
-                HStack {
-                    HStack {
-                        Text("Hex:")
-                            .font(.system(size: 25))
-                            .italic()
-                        Spacer()
-                    }
-                    .frame(width: 130)
-                    Text(hex)
-                        .font(.system(size: 25))
-                    Spacer()
-                }
-                HStack {
-                    HStack {
-                        Text("MSN:")
-                            .font(.system(size: 25))
-                            .italic()
-                        Spacer()
-                    }
-                    .frame(width: 130)
-                    Text(verbatim: "\(msn)")
-                    
-                        .font(.system(size: 25))
-                    Spacer()
-                }
-                if ln != 0 {
-                    HStack {
-                        HStack {
-                            Text("LN:")
-                                .font(.system(size: 25))
+                            Text("Delivery:")
+                                .font(.system(size: 20))
                                 .italic()
                             Spacer()
-                        }
-                        .frame(width: 130)
-                        Text(verbatim: "\(ln)")
-                            .font(.system(size: 25))
+                        Text(decodedDate)
+                            .font(.system(size: 20))
                         Spacer()
                     }
-                }
-                HStack {
-                    HStack {
-                        Text("FN:")
-                            .font(.system(size: 25))
-                            .italic()
-                        Spacer()
-                    }
-                    .frame(width: 130)
-                    Text(verbatim: "\(fn)")
-                        .font(.system(size: 25))
                     Spacer()
-                }
+                }.frame(height: 60)
             }
-            .listStyle(PlainListStyle())
-//            .disabled(true)
             Spacer()
         }
         .task {
+            productionList()
             convertDate()
             convertToTime()
+        }
+    }
+    func productionList() {
+        switch productionSite {
+        case "RNT":
+            productionAirport = "Renton"
+            productionCountry = "United States"
+            
+        case "BFM":
+            productionAirport = "Mobile"
+            productionCountry = "United States"
+            
+        case "SJK":
+            productionAirport = "Sao Jose Dos Campos"
+            productionCountry = "Brazil"
+            
+        default:
+            productionAirport = ""
+            productionCountry = ""
         }
     }
     func convertDate() {
@@ -185,11 +139,5 @@ struct AircraftView: View {
         let diffs = Calendar.current.dateComponents([.year, .month, .day], from: dt, to: tdt)
         years = diffs.year!
         months = diffs.month!
-    }
-}
-
-struct AircraftView_Previews: PreviewProvider {
-    static var previews: some View {
-        AircraftView(name: "Southwest Airlines", type: "B38M", model: "Boeing 737 MAX 8", registration: "N8707P", deliverydate: "2017-09-25", hex: "ABF9B1", msn: 36929, ln: 5992, fn: 8707, firstflight: "aircraft.firstflight")
     }
 }

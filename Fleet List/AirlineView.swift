@@ -82,7 +82,7 @@ struct AirlineView: View {
             }.frame(height: 70)
             List {
                 NavigationLink(destination: AllFleetView(name: name, types: types)) {
-                    Text("All")
+                    Text("All Aircraft")
                         .font(.system(size: 20))
                         .bold()
                         .italic()
@@ -111,7 +111,7 @@ struct AllFleetView: View {
                 Section(types.model) {
                     ForEach(aircraft, id: \.hex) { aircraft in
                         if aircraft.airline == name && aircraft.type == types.type {
-                            NavigationLink(destination: {AircraftView(name: name, type: aircraft.type, model: types.model, registration: aircraft.registration, deliverydate: aircraft.delivery, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn, firstflight: aircraft.firstflight)}) {
+                            NavigationLink(destination: {AircraftView(name: name, type: aircraft.type, model: types.model, registration: aircraft.registration, deliverydate: aircraft.delivery, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn, firstflight: aircraft.firstflight, productionSite: aircraft.site, config: aircraft.config)}) {
                                 HStack {
                                     HStack {
                                         Text(aircraft.registration)
@@ -170,7 +170,7 @@ struct TypesFleetView: View {
         List {
             ForEach(aircraft, id: \.hex) { aircraft in
                 if aircraft.airline == name && aircraft.type == type {
-                    NavigationLink(destination: {AircraftView(name: name, type: aircraft.type, model: model, registration: aircraft.registration, deliverydate: aircraft.delivery, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn, firstflight: aircraft.firstflight)}) {
+                    NavigationLink(destination: {AircraftView(name: name, type: aircraft.type, model: model, registration: aircraft.registration, deliverydate: aircraft.delivery, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn, firstflight: aircraft.firstflight, productionSite: aircraft.site, config: aircraft.config)}) {
                         HStack {
                             HStack {
                                 Text(aircraft.registration)
