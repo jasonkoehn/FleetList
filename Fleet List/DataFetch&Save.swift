@@ -36,6 +36,7 @@ struct Aircraft: Codable {
     var ln: Int
     var fn: Int
     var site: String
+    var remarks: String
 }
 
 struct Utilities: Codable {

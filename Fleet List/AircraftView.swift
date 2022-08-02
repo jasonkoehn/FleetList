@@ -8,24 +8,21 @@
 import SwiftUI
 
 struct AircraftView: View {
-    var name: String//
-    var type: String//
-    var model: String//
-    var registration: String//
-    var deliverydate: String//
-    var hex: String//
-    var msn: Int//
-    var ln: Int//
-    var fn: Int//
-    var firstflight: String//
+    var name: String
+    var type: String
+    var model: String
+    var registration: String
+    var deliverydate: String
+    var hex: String
+    var msn: Int
+    var ln: Int
+    var fn: Int
+    var firstflight: String
     var productionSite: String
     var config: String
+    var remarks: String
     @State var productionAirport = ""
     @State var productionCountry = ""
-    @State var decodedDate = ""
-    @State var decodedFirstFlight = ""
-    @State var years = 0
-    @State var months = 0
     var body: some View {
         VStack {
             Text(registration)
@@ -47,9 +44,10 @@ struct AircraftView: View {
                 Spacer()
             }.padding(.bottom, 5)
             VStack {
+                Divider()
                 HStack {
                     Text("Hex:")
-                        .font(.system(size: 20))
+                        .font(.system(size: 23))
                         .italic()
                     Text(hex)
                         .font(.system(size: 25))
@@ -63,7 +61,7 @@ struct AircraftView: View {
                             .font(.system(size: 20))
                             .italic()
                         Spacer()
-                        Text(decodedFirstFlight)
+                        Text(firstflight)
                             .font(.system(size: 20))
                         Spacer()
                     }
@@ -74,7 +72,7 @@ struct AircraftView: View {
                             .font(.system(size: 20))
                             .italic()
                         Spacer()
-                        Text(decodedDate)
+                        Text(deliverydate)
                             .font(.system(size: 20))
                         Spacer()
                     }
@@ -143,13 +141,20 @@ struct AircraftView: View {
                     Spacer()
                 }.frame(height: 60)
                 Divider()
+                if remarks != "" {
+                    HStack {
+                        Text("Remarks:")
+                            .font(.system(size: 20))
+                            .italic()
+                        Text(remarks)
+                            .font(.system(size: 18))
+                    }
+                }
             }
             Spacer()
         }
         .task {
             productionList()
-            convertDate()
-            convertToTime()
         }
     }
     func productionList() {
@@ -170,30 +175,5 @@ struct AircraftView: View {
             productionAirport = ""
             productionCountry = ""
         }
-    }
-    func convertDate() {
-        let fmt = DateFormatter()
-        fmt.locale = Locale(identifier: "en_US_POSIX")
-        fmt.dateFormat = "yyyy-MM-dd"
-        
-        let dt = fmt.date(from: deliverydate)!
-        
-        fmt.dateFormat = "MMM d, yyyy"
-        decodedDate = fmt.string(from: dt)
-    }
-    func convertToTime() {
-        let fmt = DateFormatter()
-        fmt.locale = Locale(identifier: "en_US_POSIX")
-        fmt.dateFormat = "yyyy-MM-dd"
-        
-        let dt = fmt.date(from: firstflight)!
-        let tdt = Date()
-        
-        fmt.dateFormat = "MMM d, yyyy"
-        decodedFirstFlight = fmt.string(from: dt)
-        
-        let diffs = Calendar.current.dateComponents([.year, .month, .day], from: dt, to: tdt)
-        years = diffs.year!
-        months = diffs.month!
     }
 }
