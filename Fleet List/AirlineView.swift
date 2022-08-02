@@ -16,6 +16,7 @@ struct AirlineView: View {
     var callsign: String
     var fleetsize: Int
     var types: [Types] = []
+    @State var models = ""
     var body: some View {
         VStack {
             Image(name)
@@ -96,8 +97,7 @@ struct AirlineView: View {
                 }
             }.listStyle(PlainListStyle())
                 .navigationTitle(name)
-        }
-        
+        }.textSelection(.enabled)
     }
 }
 
@@ -185,7 +185,7 @@ struct TypesFleetView: View {
             }
         }
         .listStyle(PlainListStyle())
-        .navigationTitle(model)
+        .navigationBarTitle(model, displayMode: .inline)
         .task {
             loadAircraft()
         }

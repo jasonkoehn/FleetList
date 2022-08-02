@@ -153,6 +153,7 @@ struct AircraftView: View {
             }
             Spacer()
         }
+        .textSelection(.enabled)
         .task {
             productionList()
         }

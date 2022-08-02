@@ -8,6 +8,17 @@
 import SwiftUI
 
 // Data Structs
+struct AirlineAPI: Codable {
+    var name: String
+    var country: String
+    var website: String
+    var iata: String
+    var icao: String
+    var callsign: String
+    var fleetsize: Int
+    var types: String
+}
+
 struct Airline: Codable {
     var name: String
     var country: String
@@ -56,18 +67,44 @@ struct Letter: Codable {
 // Data Arrays
 var airlinesBeforeSave: [Airline] = []
 var aircraftBeforeSave: [Aircraft] = []
+var model = ""
+var airlineTypes: [Types] = []
 
 
 // Load from API Functions
 func loadAirlinesfromapi() async {
-    guard let url = URL(string: "https://jasonkoehn.github.io/FleetList/Airlines.json") else {
+    guard let url = URL(string: "https://jasonkoehn.github.io/FleetList/AirlinesTry.json") else {
         print("Invalid URL")
         return
     }
     do {
         let (data, _) = try await URLSession.shared.data(from: url)
-        if let decodedResponse = try? JSONDecoder().decode([Airline].self, from: data) {
-            airlinesBeforeSave = decodedResponse
+        if let decodedResponse = try? JSONDecoder().decode([AirlineAPI].self, from: data) {
+            airlinesBeforeSave = []
+            for airline in decodedResponse {
+                let types = airline.types.components(separatedBy: ",")
+                for type in types {
+                    switch type {
+                    case "E190":
+                        model = "Embraer E190"
+                    case "E195":
+                        model = "Embraer E195"
+                    case "BCS3":
+                        model = "Airbus A220-300"
+                    case "B737":
+                        model = "Boeing 737-700"
+                    case "B738":
+                        model = "Boeing 737-800"
+                    case "B38M":
+                        model = "Boeing 737 MAX 8"
+                    default:
+                        model = ""
+                    }
+                    airlineTypes.append(Types(type: type, model: model))
+                }
+                airlinesBeforeSave.append(Airline(name: airline.name, country: airline.country, website: airline.website, iata: airline.iata, icao: airline.icao, callsign: airline.callsign, fleetsize: airline.fleetsize, types: airlineTypes))
+                airlineTypes = []
+            }
         }
     } catch {
         print("Invalid data")
