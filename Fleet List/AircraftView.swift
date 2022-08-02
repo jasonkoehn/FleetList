@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct AircraftView: View {
-    var name: String
-    var type: String
-    var model: String
-    var registration: String
-    var deliverydate: String
-    var hex: String
-    var msn: Int
-    var ln: Int
-    var fn: Int
-    var firstflight: String
+    var name: String//
+    var type: String//
+    var model: String//
+    var registration: String//
+    var deliverydate: String//
+    var hex: String//
+    var msn: Int//
+    var ln: Int//
+    var fn: Int//
+    var firstflight: String//
     var productionSite: String
     var config: String
     @State var productionAirport = ""
@@ -45,23 +45,16 @@ struct AircraftView: View {
                     .font(.system(size: 20))
                     .italic()
                 Spacer()
-            }.padding(.bottom)
+            }.padding(.bottom, 5)
             VStack {
                 HStack {
-                    Image(productionCountry)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 40)
-                    Text(productionAirport+"("+productionSite+")")
-                        .font(.system(size: 20))
-                }
-                HStack {
-                    Text("Config:")
+                    Text("Hex:")
                         .font(.system(size: 20))
                         .italic()
-                    Text(config)
-                        .font(.system(size: 20))
-                }
+                    Text(hex)
+                        .font(.system(size: 25))
+                }.padding(.top, 1)
+                Divider()
                 HStack {
                     Spacer()
                     VStack {
@@ -77,16 +70,79 @@ struct AircraftView: View {
                     Spacer()
                     VStack {
                         Spacer()
-                            Text("Delivery:")
-                                .font(.system(size: 20))
-                                .italic()
-                            Spacer()
+                        Text("Delivery:")
+                            .font(.system(size: 20))
+                            .italic()
+                        Spacer()
                         Text(decodedDate)
                             .font(.system(size: 20))
                         Spacer()
                     }
                     Spacer()
                 }.frame(height: 60)
+                Divider()
+                HStack {
+                    Spacer()
+                    VStack {
+                        Spacer()
+                        Text("MSN")
+                            .font(.system(size: 20))
+                            .italic()
+                        Spacer()
+                        Text(verbatim: "\(msn)")
+                            .font(.system(size: 20))
+                        Spacer()
+                    }
+                    if ln != 0 {
+                        Spacer()
+                        VStack {
+                            Spacer()
+                            Text("LN")
+                                .font(.system(size: 20))
+                                .italic()
+                            Spacer()
+                            Text(verbatim: "\(ln)")
+                                .font(.system(size: 20))
+                            Spacer()
+                        }
+                    }
+                    Spacer()
+                    VStack {
+                        Spacer()
+                        Text("FN")
+                            .font(.system(size: 20))
+                            .italic()
+                        Spacer()
+                        Text(verbatim: "\(fn)")
+                            .font(.system(size: 20))
+                        Spacer()
+                    }
+                    Spacer()
+                }.frame(height: 60)
+            }
+            VStack {
+                Divider()
+                VStack {
+                    Spacer()
+                    HStack {
+                        Text("Config:")
+                            .font(.system(size: 20))
+                            .italic()
+                        Text(config)
+                            .font(.system(size: 20))
+                    }
+                    Spacer()
+                    HStack {
+                        Image(productionCountry)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 23)
+                        Text(productionAirport+"("+productionSite+")")
+                            .font(.system(size: 20))
+                    }
+                    Spacer()
+                }.frame(height: 60)
+                Divider()
             }
             Spacer()
         }
