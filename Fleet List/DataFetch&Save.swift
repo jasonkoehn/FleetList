@@ -73,7 +73,7 @@ var airlineTypes: [Types] = []
 
 // Load from API Functions
 func loadAirlinesfromapi() async {
-    guard let url = URL(string: "https://jasonkoehn.github.io/FleetList/AirlinesTry.json") else {
+    guard let url = URL(string: "https://jasonkoehn.github.io/FleetList/Airlines.json") else {
         print("Invalid URL")
         return
     }
