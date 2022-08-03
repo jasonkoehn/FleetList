@@ -23,6 +23,12 @@ struct AppView: View {
                 Image(systemName: "list.bullet")
                 Text("Countries")
             }
+            NavigationView {
+                SettingsView()
+            }.tabItem {
+                Image(systemName: "gear")
+                Text("Settings")
+            }
         }
     }
 }

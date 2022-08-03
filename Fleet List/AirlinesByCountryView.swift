@@ -37,6 +37,8 @@ struct AirlinesByCountryView: View {
                 await loadAirlinesfromapi()
                 saveAirlines()
                 loadAirlines()
+                await loadAircraftfromapi()
+                saveAircraft()
             }
         }
     }
