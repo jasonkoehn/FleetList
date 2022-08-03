@@ -155,6 +155,7 @@ func loadAirlinesfromapi() async {
         }
     } catch {
         print("Invalid data")
+        
     }
 }
 
