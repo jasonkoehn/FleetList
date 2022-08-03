@@ -28,6 +28,7 @@ struct AircraftView: View {
             Text(registration)
                 .font(.system(size: 60))
                 .padding(1)
+                .padding(.top, 50)
             Image(name)
                 .resizable()
                 .aspectRatio(contentMode: .fit)

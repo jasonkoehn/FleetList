@@ -16,15 +16,21 @@ struct AirlineView: View {
     var callsign: String
     var fleetsize: Int
     var types: [Types] = []
-    @State var models = ""
     var body: some View {
         VStack {
+            Text(name)
+                .font(.system(size: 40))
+                .italic()
+                .bold()
+                .padding(1)
+                .padding(.top, 20)
             Image(name)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(4)
                 .frame(height: 80)
                 .padding(.horizontal, 10)
+                .padding(.vertical, 1)
             HStack {
                 Spacer()
                 Text("IATA")
@@ -96,8 +102,8 @@ struct AirlineView: View {
                     }
                 }
             }.listStyle(PlainListStyle())
-                .navigationTitle(name)
         }.textSelection(.enabled)
+            .navigationBarTitle("", displayMode: .inline)
     }
 }
 
@@ -113,6 +119,10 @@ struct AllFleetView: View {
                         if aircraft.airline == name && aircraft.type == types.type {
                             NavigationLink(destination: {AircraftView(name: name, type: aircraft.type, model: types.model, registration: aircraft.registration, deliverydate: aircraft.delivery, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn, firstflight: aircraft.firstflight, productionSite: aircraft.site, config: aircraft.config, remarks: aircraft.remarks)}) {
                                 HStack {
+                                    Image(name)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 50)
                                     HStack {
                                         Text(aircraft.registration)
                                             .font(.system(size: 23))
@@ -125,10 +135,10 @@ struct AllFleetView: View {
                         }
                     }
                 }
-            }
+            }.frame(height: 30)
         }
         .listStyle(PlainListStyle())
-        .navigationTitle("Aircraft")
+        .navigationBarTitle("Aircraft", displayMode: .inline)
         .task {
             loadAircraft()
         }
@@ -172,6 +182,10 @@ struct TypesFleetView: View {
                 if aircraft.airline == name && aircraft.type == type {
                     NavigationLink(destination: {AircraftView(name: name, type: aircraft.type, model: model, registration: aircraft.registration, deliverydate: aircraft.delivery, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn, firstflight: aircraft.firstflight, productionSite: aircraft.site, config: aircraft.config, remarks: aircraft.remarks)}) {
                         HStack {
+                            Image(name)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 50)
                             HStack {
                                 Text(aircraft.registration)
                                     .font(.system(size: 23))
@@ -182,7 +196,7 @@ struct TypesFleetView: View {
                         }
                     }
                 }
-            }
+            }.frame(height: 30)
         }
         .listStyle(PlainListStyle())
         .navigationBarTitle(model, displayMode: .inline)
