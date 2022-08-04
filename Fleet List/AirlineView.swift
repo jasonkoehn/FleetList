@@ -19,7 +19,7 @@ struct AirlineView: View {
     var body: some View {
         VStack {
             Text(name)
-                .font(.system(size: 40))
+                .font(.system(size: 38))
                 .italic()
                 .bold()
                 .padding(1)

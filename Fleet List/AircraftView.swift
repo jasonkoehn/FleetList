@@ -23,6 +23,9 @@ struct AircraftView: View {
     var remarks: String
     @State var productionAirport = ""
     @State var productionCountry = ""
+    @State var years: Int = 0
+    @State var yearsFraction: Double = 0.0
+    @State var isYearFraction: Bool = true
     var body: some View {
         VStack {
             Text(registration)
@@ -124,11 +127,66 @@ struct AircraftView: View {
                 VStack {
                     Spacer()
                     HStack {
-                        Text("Config:")
-                            .font(.system(size: 20))
-                            .italic()
-                        Text(config)
-                            .font(.system(size: 20))
+                        Spacer()
+                        HStack {
+                            Text("Config:")
+                                .font(.system(size: 20))
+                                .italic()
+                            Text(config)
+                                .font(.system(size: 20))
+                        }
+                        Spacer()
+                        HStack {
+                            Text("Age:")
+                                .font(.system(size: 20))
+                                .italic()
+                            if isYearFraction == false {
+                                switch years {
+                                case 0:
+                                    Text("Brand New")
+                                        .font(.system(size: 20))
+                                case 1:
+                                    HStack(spacing: 2) {
+                                        Text("\(years)")
+                                            .font(.system(size: 20))
+                                        Text("year")
+                                            .font(.system(size: 17))
+                                            .italic()
+                                    }
+                                default:
+                                    HStack(spacing:2) {
+                                        Text("\(years)")
+                                            .font(.system(size: 20))
+                                        Text("years")
+                                            .font(.system(size: 17))
+                                            .italic()
+                                    }
+                                }
+                            } else {
+                                switch yearsFraction {
+                                case 0.0 ... 0.9:
+                                    Text("Brand New")
+                                        .font(.system(size: 20))
+                                case 1.0:
+                                    HStack(spacing: 2) {
+                                        Text("\(yearsFraction, specifier: "%.1f")")
+                                            .font(.system(size: 20))
+                                        Text("year")
+                                            .font(.system(size: 17))
+                                            .italic()
+                                    }
+                                default:
+                                    HStack(spacing: 2) {
+                                        Text("\(yearsFraction, specifier: "%.1f")")
+                                            .font(.system(size: 20))
+                                        Text("years")
+                                            .font(.system(size: 17))
+                                            .italic()
+                                    }
+                                }
+                            }
+                        }
+                        Spacer()
                     }
                     Spacer()
                     HStack {
@@ -157,6 +215,7 @@ struct AircraftView: View {
         .textSelection(.enabled)
         .task {
             productionList()
+            convertToTime()
         }
     }
     func productionList() {
@@ -176,6 +235,30 @@ struct AircraftView: View {
         default:
             productionAirport = ""
             productionCountry = ""
+        }
+    }
+    func convertToTime() {
+        let fmt = DateFormatter()
+        fmt.locale = Locale(identifier: "en_US_POSIX")
+        if firstflight.count == 4 {
+            fmt.dateFormat = "yyyy"
+            let dt = fmt.date(from: firstflight)!
+            let tdt = Date()
+            let diffs = Calendar.current.dateComponents([.year], from: dt, to: tdt)
+            isYearFraction = false
+            years = diffs.year!
+        } else if firstflight.count == 8 {
+            fmt.dateFormat = "MMM yyyy"
+            let dt = fmt.date(from: firstflight)!
+            let tdt = Date()
+            let diffs = Calendar.current.dateComponents([.year, .month], from: dt, to: tdt)
+            yearsFraction = Double(diffs.year!) + (Double(diffs.month!) / 12)
+        } else {
+            fmt.dateFormat = "MMM d, yyyy"
+            let dt = fmt.date(from: firstflight)!
+            let tdt = Date()
+            let diffs = Calendar.current.dateComponents([.year, .month], from: dt, to: tdt)
+            yearsFraction = Double(diffs.year!) + (Double(diffs.month!) / 12)
         }
     }
 }
