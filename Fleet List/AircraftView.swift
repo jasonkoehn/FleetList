@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AircraftView: View {
     var name: String
+    var country: String
     var type: String
     var model: String
     var registration: String
@@ -49,13 +50,27 @@ struct AircraftView: View {
             }.padding(.bottom, 5)
             VStack {
                 Divider()
-                HStack {
-                    Text("Hex:")
-                        .font(.system(size: 23))
-                        .italic()
-                    Text(hex)
-                        .font(.system(size: 25))
-                }.padding(.top, 1)
+                VStack {
+                    Spacer()
+                    HStack {
+                        Text("Hex:")
+                            .font(.system(size: 23))
+                            .italic()
+                        Text(hex)
+                            .font(.system(size: 25))
+                    }
+                    Spacer()
+                    HStack {
+                        Text("Country Of Reg:")
+                            .font(.system(size: 20))
+                            .italic()
+                        Image(country)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 23)
+                    }
+                    Spacer()
+                }.frame(height: 60)
                 Divider()
                 HStack {
                     Spacer()
