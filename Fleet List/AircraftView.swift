@@ -27,7 +27,6 @@ struct AircraftView: View {
     @State var years: Int = 0
     @State var yearsFraction: Double = 0.0
     @State var isYearFraction: Bool = true
-    @AppStorage("IsPro") var isPro = false
     var body: some View {
         VStack {
             Text(registration)
@@ -65,15 +64,10 @@ struct AircraftView: View {
                         Text("Country Of Reg:")
                             .font(.system(size: 20))
                             .italic()
-                        if isPro == true {
-                            Image(country)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(height: 23)
-                        } else {
-                            Image(systemName: "lock.fill")
-                                .font(.system(size: 18))
-                        }
+                        Image(country)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 23)
                     }
                     Spacer()
                 }.frame(height: 60)
@@ -124,13 +118,8 @@ struct AircraftView: View {
                                 .font(.system(size: 20))
                                 .italic()
                             Spacer()
-                            if isPro == true {
                             Text(ln)
                                 .font(.system(size: 20))
-                            } else {
-                                Image(systemName: "lock.fill")
-                                    .font(.system(size: 18))
-                            }
                             Spacer()
                         }
                     }
@@ -158,20 +147,14 @@ struct AircraftView: View {
                             Text("Config:")
                                 .font(.system(size: 20))
                                 .italic()
-                            if isPro == true {
                             Text(config)
                                 .font(.system(size: 20))
-                            } else {
-                                Image(systemName: "lock.fill")
-                                    .font(.system(size: 18))
-                            }
                         }
                         Spacer()
                         HStack {
                             Text("Age:")
                                 .font(.system(size: 20))
                                 .italic()
-                            if isPro == true {
                             if isYearFraction == false {
                                 switch years {
                                 case 0:
@@ -217,26 +200,17 @@ struct AircraftView: View {
                                     }
                                 }
                             }
-                            } else {
-                                Image(systemName: "lock.fill")
-                                    .font(.system(size: 18))
-                            }
                         }
                         Spacer()
                     }
                     Spacer()
                     HStack {
-                        if isPro == true {
                         Image(productionCountry)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(height: 23)
                         Text(productionAirport+"("+productionSite+")")
                             .font(.system(size: 20))
-                        } else {
-                            Image(systemName: "lock.fill")
-                                .font(.system(size: 18))
-                        }
                     }
                     Spacer()
                 }.frame(height: 60)
@@ -246,13 +220,8 @@ struct AircraftView: View {
                         Text("Remarks:")
                             .font(.system(size: 20))
                             .italic()
-                        if isPro == true {
                         Text(remarks)
                             .font(.system(size: 18))
-                        } else {
-                            Image(systemName: "lock.fill")
-                                .font(.system(size: 18))
-                        }
                     }
                 }
             }
