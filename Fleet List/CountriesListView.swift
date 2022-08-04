@@ -40,10 +40,16 @@ struct CountriesListView: View {
         let fileUrl = url.appendingPathComponent("countries.plist")
         if let data = try? Data(contentsOf: fileUrl) {
             let decoder = PropertyListDecoder()
-            let response = try! decoder.decode([Country].self, from: data)
-            countries = response
-            countries.sort {
-                $0.name < $1.name
+            if let response = try? decoder.decode([Country].self, from: data) {
+                countries = response
+                countries.sort {
+                    $0.name < $1.name
+                }
+            } else {
+                Task {
+                    await loadUtilitiesfromapi()
+                    loadCountries()
+                }
             }
         } else {
             Task {

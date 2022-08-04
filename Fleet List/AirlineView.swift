@@ -156,10 +156,17 @@ struct AllFleetView: View {
         let fileUrl = url.appendingPathComponent("aircraft.plist")
         if let data = try? Data(contentsOf: fileUrl) {
             let decoder = PropertyListDecoder()
-            let response = try! decoder.decode([Aircraft].self, from: data)
-            aircraft = response
-            aircraft.sort {
-                $0.registration < $1.registration
+            if let response = try? decoder.decode([Aircraft].self, from: data) {
+                aircraft = response
+                aircraft.sort {
+                    $0.registration < $1.registration
+                }
+            } else {
+                Task {
+                    await loadAircraftfromapi()
+                    saveAircraft()
+                    loadAircraft()
+                }
             }
         } else {
             Task {
@@ -217,10 +224,17 @@ struct TypesFleetView: View {
         let fileUrl = url.appendingPathComponent("aircraft.plist")
         if let data = try? Data(contentsOf: fileUrl) {
             let decoder = PropertyListDecoder()
-            let response = try! decoder.decode([Aircraft].self, from: data)
-            aircraft = response
-            aircraft.sort {
-                $0.registration < $1.registration
+            if let response = try? decoder.decode([Aircraft].self, from: data) {
+                aircraft = response
+                aircraft.sort {
+                    $0.registration < $1.registration
+                }
+            } else {
+                Task {
+                    await loadAircraftfromapi()
+                    saveAircraft()
+                    loadAircraft()
+                }
             }
         } else {
             Task {

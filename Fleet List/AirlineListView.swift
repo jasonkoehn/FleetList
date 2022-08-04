@@ -55,10 +55,17 @@ struct AirlineListView: View {
         let fileUrl = url.appendingPathComponent("airlines.plist")
         if let data = try? Data(contentsOf: fileUrl) {
             let decoder = PropertyListDecoder()
-            let response = try! decoder.decode([Airline].self, from: data)
-            airlines = response
-            airlines.sort {
-                $0.name < $1.name
+            if let response = try? decoder.decode([Airline].self, from: data) {
+                airlines = response
+                airlines.sort {
+                    $0.name < $1.name
+                }
+            }else {
+                Task {
+                    await loadAirlinesfromapi()
+                    saveAirlines()
+                    loadAirlines()
+                }
             }
         } else {
             Task {
@@ -74,8 +81,17 @@ struct AirlineListView: View {
         let fileUrl = url.appendingPathComponent("letters.plist")
         if let data = try? Data(contentsOf: fileUrl) {
             let decoder = PropertyListDecoder()
-            let response = try! decoder.decode([Letter].self, from: data)
-            alphabet = response
+            if let response = try? decoder.decode([Letter].self, from: data) {
+                alphabet = response
+                alphabet.sort {
+                    $0.letter < $1.letter
+                }
+            } else {
+                Task {
+                    await loadUtilitiesfromapi()
+                    loadLetters()
+                }
+            }
         } else {
             Task {
                 await loadUtilitiesfromapi()
