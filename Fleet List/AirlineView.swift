@@ -88,14 +88,14 @@ struct AirlineView: View {
                 Spacer()
             }.frame(height: 70)
             List {
-                NavigationLink(destination: AllFleetView(name: name, country: country, types: types)) {
+                NavigationLink(destination: AllFleetView(name: name, types: types)) {
                     Text("All Aircraft")
                         .font(.system(size: 20))
                         .bold()
                         .italic()
                 }
                 ForEach(types, id: \.type) { types in
-                    NavigationLink(destination: TypesFleetView(name: name, country: country, type: types.type, model: types.model)) {
+                    NavigationLink(destination: TypesFleetView(name: name, type: types.type, model: types.model)) {
                         Text(types.model)
                             .font(.system(size: 17))
                             .italic()
@@ -110,7 +110,6 @@ struct AirlineView: View {
 struct AllFleetView: View {
     @State var aircraft: [Aircraft] = []
     var name: String
-    var country: String
     var types: [Types] = []
     var body: some View {
         List {
@@ -118,7 +117,7 @@ struct AllFleetView: View {
                 Section(types.model) {
                     ForEach(aircraft, id: \.hex) { aircraft in
                         if aircraft.airline == name && aircraft.type == types.type {
-                            NavigationLink(destination: {AircraftView(name: name, country: country, type: aircraft.type, model: types.model, registration: aircraft.registration, deliverydate: aircraft.delivery, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn, firstflight: aircraft.firstflight, productionSite: aircraft.site, config: aircraft.config, remarks: aircraft.remarks)}) {
+                            NavigationLink(destination: {AircraftView(name: name, country: aircraft.country, type: aircraft.type, model: types.model, registration: aircraft.registration, deliverydate: aircraft.delivery, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn, firstflight: aircraft.firstflight, productionSite: aircraft.site, config: aircraft.config, remarks: aircraft.remarks)}) {
                                 HStack {
                                     Image(name)
                                         .resizable()
@@ -175,14 +174,13 @@ struct AllFleetView: View {
 struct TypesFleetView: View {
     @State var aircraft: [Aircraft] = []
     var name: String
-    var country: String
     var type: String
     var model: String
     var body: some View {
         List {
             ForEach(aircraft, id: \.hex) { aircraft in
                 if aircraft.airline == name && aircraft.type == type {
-                    NavigationLink(destination: {AircraftView(name: name, country: country, type: aircraft.type, model: model, registration: aircraft.registration, deliverydate: aircraft.delivery, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn, firstflight: aircraft.firstflight, productionSite: aircraft.site, config: aircraft.config, remarks: aircraft.remarks)}) {
+                    NavigationLink(destination: {AircraftView(name: name, country: aircraft.country, type: aircraft.type, model: model, registration: aircraft.registration, deliverydate: aircraft.delivery, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn, firstflight: aircraft.firstflight, productionSite: aircraft.site, config: aircraft.config, remarks: aircraft.remarks)}) {
                         HStack {
                             Image(name)
                                 .resizable()

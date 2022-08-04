@@ -17,6 +17,7 @@ struct SettingsView: View {
                     UserDefaults.standard.set(self.isPro, forKey: "IsPro")
                 }
         }
+        .listStyle(PlainListStyle())
         .navigationTitle("Settings")
     }
 }

@@ -15,9 +15,9 @@ struct AircraftView: View {
     var registration: String
     var deliverydate: String
     var hex: String
-    var msn: Int
-    var ln: Int
-    var fn: Int
+    var msn: String
+    var ln: String
+    var fn: String
     var firstflight: String
     var productionSite: String
     var config: String
@@ -112,11 +112,11 @@ struct AircraftView: View {
                             .font(.system(size: 20))
                             .italic()
                         Spacer()
-                        Text(verbatim: "\(msn)")
+                        Text(msn)
                             .font(.system(size: 20))
                         Spacer()
                     }
-                    if ln != 0 {
+                    if ln != "0" {
                         Spacer()
                         VStack {
                             Spacer()
@@ -125,7 +125,7 @@ struct AircraftView: View {
                                 .italic()
                             Spacer()
                             if isPro == true {
-                            Text(verbatim: "\(ln)")
+                            Text(ln)
                                 .font(.system(size: 20))
                             } else {
                                 Image(systemName: "lock.fill")
@@ -141,7 +141,7 @@ struct AircraftView: View {
                             .font(.system(size: 20))
                             .italic()
                         Spacer()
-                        Text(verbatim: "\(fn)")
+                        Text(fn)
                             .font(.system(size: 20))
                         Spacer()
                     }
