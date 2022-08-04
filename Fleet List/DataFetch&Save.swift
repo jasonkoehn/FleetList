@@ -15,8 +15,9 @@ struct AirlineAPI: Codable {
     var iata: String
     var icao: String
     var callsign: String
-    var fleetsize: Int
+    var fleetsize: String
     var types: String
+    var summary: String
 }
 
 struct Airline: Codable {
@@ -26,7 +27,8 @@ struct Airline: Codable {
     var iata: String
     var icao: String
     var callsign: String
-    var fleetsize: Int
+    var summary: String
+    var fleetsize: String
     var types: [Types]
 }
 
@@ -103,7 +105,7 @@ func loadAirlinesfromapi() async {
                     }
                     airlineTypes.append(Types(type: type, model: model))
                 }
-                airlinesBeforeSave.append(Airline(name: airline.name, country: airline.country, website: airline.website, iata: airline.iata, icao: airline.icao, callsign: airline.callsign, fleetsize: airline.fleetsize, types: airlineTypes))
+                airlinesBeforeSave.append(Airline(name: airline.name, country: airline.country, website: airline.website, iata: airline.iata, icao: airline.icao, callsign: airline.callsign, summary: airline.summary, fleetsize: airline.fleetsize, types: airlineTypes))
                 airlineTypes = []
             }
         }

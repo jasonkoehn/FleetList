@@ -14,7 +14,7 @@ struct AirlineView: View {
     var iata: String
     var icao: String
     var callsign: String
-    var fleetsize: Int
+    var fleetsize: String
     var types: [Types] = []
     var body: some View {
         VStack {
@@ -68,7 +68,7 @@ struct AirlineView: View {
                         .italic()
                         .font(.headline)
                     Spacer()
-                    Text("\(fleetsize)")
+                    Text(fleetsize)
                         .font(.system(size: 20))
                     Spacer()
                 }
