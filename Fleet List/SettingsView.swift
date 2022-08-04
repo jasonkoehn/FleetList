@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @State private var isPro: Bool = UserDefaults.standard.bool(forKey: "IsPro")
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            Toggle("Pro", isOn: $isPro)
+                .font(.system(size: 25))
+                .onChange(of: isPro) { newValue in
+                    UserDefaults.standard.set(self.isPro, forKey: "IsPro")
+                }
+        }
+        .navigationTitle("Settings")
     }
 }
 
