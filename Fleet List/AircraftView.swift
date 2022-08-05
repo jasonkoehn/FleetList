@@ -32,7 +32,7 @@ struct AircraftView: View {
             Text(registration)
                 .font(.system(size: 60))
                 .padding(1)
-                .padding(.top, 50)
+                .padding(.top, 40)
             Image(name)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -42,9 +42,9 @@ struct AircraftView: View {
             HStack {
                 Spacer()
                 Text(model)
-                    .font(.system(size: 30))
+                    .font(.system(size: 26))
                 Text("("+type+")")
-                    .font(.system(size: 20))
+                    .font(.system(size: 17))
                     .italic()
                 Spacer()
             }.padding(.bottom, 5)
@@ -54,20 +54,20 @@ struct AircraftView: View {
                     Spacer()
                     HStack {
                         Text("Hex:")
-                            .font(.system(size: 23))
+                            .font(.system(size: 22))
                             .italic()
                         Text(hex)
-                            .font(.system(size: 25))
+                            .font(.system(size: 24))
                     }
                     Spacer()
                     HStack {
                         Text("Country Of Reg:")
-                            .font(.system(size: 20))
+                            .font(.system(size: 19))
                             .italic()
                         Image(country)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(height: 23)
+                            .frame(height: 22)
                     }
                     Spacer()
                 }.frame(height: 60)
@@ -77,22 +77,22 @@ struct AircraftView: View {
                     VStack {
                         Spacer()
                         Text("First Flight:")
-                            .font(.system(size: 20))
+                            .font(.system(size: 19))
                             .italic()
                         Spacer()
                         Text(firstflight)
-                            .font(.system(size: 20))
+                            .font(.system(size: 19))
                         Spacer()
                     }
                     Spacer()
                     VStack {
                         Spacer()
                         Text("Delivery:")
-                            .font(.system(size: 20))
+                            .font(.system(size: 19))
                             .italic()
                         Spacer()
                         Text(deliverydate)
-                            .font(.system(size: 20))
+                            .font(.system(size: 19))
                         Spacer()
                     }
                     Spacer()
@@ -103,11 +103,11 @@ struct AircraftView: View {
                     VStack {
                         Spacer()
                         Text("MSN")
-                            .font(.system(size: 20))
+                            .font(.system(size: 19))
                             .italic()
                         Spacer()
                         Text(msn)
-                            .font(.system(size: 20))
+                            .font(.system(size: 19))
                         Spacer()
                     }
                     if ln != "0" {
@@ -115,11 +115,11 @@ struct AircraftView: View {
                         VStack {
                             Spacer()
                             Text("LN")
-                                .font(.system(size: 20))
+                                .font(.system(size: 19))
                                 .italic()
                             Spacer()
                             Text(ln)
-                                .font(.system(size: 20))
+                                .font(.system(size: 19))
                             Spacer()
                         }
                     }
@@ -128,11 +128,11 @@ struct AircraftView: View {
                         VStack {
                             Spacer()
                             Text("FN")
-                                .font(.system(size: 20))
+                                .font(.system(size: 19))
                                 .italic()
                             Spacer()
                             Text(fn)
-                                .font(.system(size: 20))
+                                .font(.system(size: 19))
                             Spacer()
                         }
                     }
@@ -147,35 +147,35 @@ struct AircraftView: View {
                         Spacer()
                         HStack {
                             Text("Config:")
-                                .font(.system(size: 20))
+                                .font(.system(size: 19))
                                 .italic()
                             Text(config)
-                                .font(.system(size: 20))
+                                .font(.system(size: 19))
                         }
                         Spacer()
                         HStack {
                             Text("Age:")
-                                .font(.system(size: 20))
+                                .font(.system(size: 19))
                                 .italic()
                             if isYearFraction == false {
                                 switch years {
                                 case 0:
                                     Text("Brand New")
-                                        .font(.system(size: 20))
+                                        .font(.system(size: 19))
                                 case 1:
                                     HStack(spacing: 2) {
                                         Text("\(years)")
-                                            .font(.system(size: 20))
+                                            .font(.system(size: 19))
                                         Text("year")
-                                            .font(.system(size: 17))
+                                            .font(.system(size: 16))
                                             .italic()
                                     }
                                 default:
                                     HStack(spacing:2) {
                                         Text("\(years)")
-                                            .font(.system(size: 20))
+                                            .font(.system(size: 19))
                                         Text("years")
-                                            .font(.system(size: 17))
+                                            .font(.system(size: 16))
                                             .italic()
                                     }
                                 }
@@ -183,21 +183,21 @@ struct AircraftView: View {
                                 switch yearsFraction {
                                 case 0.0 ... 0.9:
                                     Text("Brand New")
-                                        .font(.system(size: 20))
+                                        .font(.system(size: 19))
                                 case 1.0:
                                     HStack(spacing: 2) {
                                         Text("\(yearsFraction, specifier: "%.1f")")
-                                            .font(.system(size: 20))
+                                            .font(.system(size: 19))
                                         Text("year")
-                                            .font(.system(size: 17))
+                                            .font(.system(size: 16))
                                             .italic()
                                     }
                                 default:
                                     HStack(spacing: 2) {
                                         Text("\(yearsFraction, specifier: "%.1f")")
-                                            .font(.system(size: 20))
+                                            .font(.system(size: 19))
                                         Text("years")
-                                            .font(.system(size: 17))
+                                            .font(.system(size: 16))
                                             .italic()
                                     }
                                 }
@@ -210,9 +210,9 @@ struct AircraftView: View {
                         Image(productionCountry)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(height: 23)
+                            .frame(height: 22)
                         Text(productionAirport+"("+productionSite+")")
-                            .font(.system(size: 20))
+                            .font(.system(size: 19))
                     }
                     Spacer()
                 }.frame(height: 60)
@@ -220,10 +220,10 @@ struct AircraftView: View {
                 if remarks != "" {
                     HStack {
                         Text("Remarks:")
-                            .font(.system(size: 20))
+                            .font(.system(size: 19))
                             .italic()
                         Text(remarks)
-                            .font(.system(size: 18))
+                            .font(.system(size: 17))
                     }
                 }
             }
