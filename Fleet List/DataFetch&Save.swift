@@ -88,10 +88,16 @@ func loadAirlinesfromapi() async {
                 let types = airline.types.components(separatedBy: ",")
                 for type in types {
                     switch type {
+                    case "E135":
+                        model = "Embraer ERJ135"
+                    case "E145":
+                        model = "Embraer ERJ145"
                     case "E190":
                         model = "Embraer E190"
                     case "E195":
                         model = "Embraer E195"
+                    case "BCS1":
+                        model = "Airbus A220-100"
                     case "BCS3":
                         model = "Airbus A220-300"
                     case "B737":

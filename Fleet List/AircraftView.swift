@@ -123,16 +123,18 @@ struct AircraftView: View {
                             Spacer()
                         }
                     }
-                    Spacer()
-                    VStack {
+                    if fn != "0" {
                         Spacer()
-                        Text("FN")
-                            .font(.system(size: 20))
-                            .italic()
-                        Spacer()
-                        Text(fn)
-                            .font(.system(size: 20))
-                        Spacer()
+                        VStack {
+                            Spacer()
+                            Text("FN")
+                                .font(.system(size: 20))
+                                .italic()
+                            Spacer()
+                            Text(fn)
+                                .font(.system(size: 20))
+                            Spacer()
+                        }
                     }
                     Spacer()
                 }.frame(height: 60)
