@@ -88,6 +88,50 @@ func loadAirlinesfromapi() async {
                 let types = airline.types.components(separatedBy: ",")
                 for type in types {
                     switch type {
+                    case "A20N":
+                        model = "Airbus A320neo"
+                    case "A21N":
+                        model = "Airbus A321neo"
+                    case "A318":
+                        model = "Airbus A318"
+                    case "A319":
+                        model = "Airbus A319"
+                    case "A320":
+                        model = "Airbus A320"
+                    case "A332":
+                        model = "Airbus A330-200"
+                    case "A333":
+                        model = "Airbus A330-300"
+                    case "A338":
+                        model = "Airbus A330-800"
+                    case "A339":
+                        model = "Airbus A330-900"
+                    case "A343":
+                        model = "Airbus A340-300"
+                    case "A346":
+                        model = "Airbus A340-600"
+                    case "A359":
+                        model = "Airbus A350-900"
+                    case "A35K":
+                        model = "Airbus A350-1000"
+                    case "A388":
+                        model = "Airbus A380-800"
+                    case "B736":
+                        model = "Boeing 737-600"
+                    case "B737":
+                        model = "Boeing 737-700"
+                    case "B738":
+                        model = "Boeing 737-800"
+                    case "B739":
+                        model = "Boeing 737-900"
+                    case "B37M":
+                        model = "Boeing 737 MAX 8"
+                    case "B38M":
+                        model = "Boeing 737 MAX 8"
+                    case "B39M":
+                        model = "Boeing 737 MAX 9"
+                    case "B78X":
+                        model = "Boeing 787-10 Dreamliner"
                     case "E135":
                         model = "Embraer ERJ135"
                     case "E145":
@@ -100,12 +144,6 @@ func loadAirlinesfromapi() async {
                         model = "Airbus A220-100"
                     case "BCS3":
                         model = "Airbus A220-300"
-                    case "B737":
-                        model = "Boeing 737-700"
-                    case "B738":
-                        model = "Boeing 737-800"
-                    case "B38M":
-                        model = "Boeing 737 MAX 8"
                     default:
                         model = ""
                     }

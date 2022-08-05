@@ -249,6 +249,10 @@ struct AircraftView: View {
             productionAirport = "Sao Jose Dos Campos"
             productionCountry = "Brazil"
             
+        case "CHS":
+            productionAirport = "Charleston"
+            productionCountry = "United States"
+            
         default:
             productionAirport = ""
             productionCountry = ""
