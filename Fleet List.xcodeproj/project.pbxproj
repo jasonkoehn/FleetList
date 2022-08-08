@@ -17,6 +17,7 @@
 		8778207B286C9E9F00614B24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8778207A286C9E9F00614B24 /* Assets.xcassets */; };
 		8778207F286C9E9F00614B24 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8778207E286C9E9F00614B24 /* Preview Assets.xcassets */; };
 		87A4AC082881054400909EC2 /* AirlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A4AC072881054400909EC2 /* AirlineView.swift */; };
+		87DC30DC28A04CE500ADD97C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DC30DB28A04CE500ADD97C /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		8778207C286C9E9F00614B24 /* Fleet_List.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fleet_List.entitlements; sourceTree = "<group>"; };
 		8778207E286C9E9F00614B24 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		87A4AC072881054400909EC2 /* AirlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirlineView.swift; sourceTree = "<group>"; };
+		87DC30DB28A04CE500ADD97C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 			children = (
 				87782076286C9E9E00614B24 /* Fleet_ListApp.swift */,
 				8731688D2890B9D700032C61 /* AppView.swift */,
+				87DC30DB28A04CE500ADD97C /* HomeView.swift */,
 				8731688F2890BA0F00032C61 /* AirlineListView.swift */,
 				87494CCD2895EF670024CA24 /* CountriesListView.swift */,
 				87494CCF2895F0300024CA24 /* AirlinesByCountryView.swift */,
@@ -157,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87DC30DC28A04CE500ADD97C /* HomeView.swift in Sources */,
 				87494CD02895F0300024CA24 /* AirlinesByCountryView.swift in Sources */,
 				87353045286CDBFD007A9160 /* AircraftView.swift in Sources */,
 				8731688E2890B9D700032C61 /* AppView.swift in Sources */,

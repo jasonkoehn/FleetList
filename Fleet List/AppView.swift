@@ -10,6 +10,13 @@ import SwiftUI
 struct AppView: View {
     var body: some View {
         TabView {
+//            NavigationView {
+//                HomeView()
+//            }
+//            .tabItem {
+//                Image(systemName: "house")
+//                Text("Home")
+//            }
             NavigationView {
                 AirlineListView()
             }
