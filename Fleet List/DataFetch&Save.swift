@@ -70,6 +70,24 @@ struct Aircraft: Codable {
     var remarks: String
 }
 
+struct AircraftDate: Codable {
+    var airline: String
+    var type: String
+    var model: String
+    var registration: String
+    var country: String
+    var firstflight: String
+    var delivery: String
+    var hex: String
+    var config: String
+    var msn: String
+    var ln: String
+    var fn: String
+    var site: String
+    var remarks: String
+    var sortDate: String
+}
+
 struct Utilities: Codable {
     var countries: [Country]
     var letters: [Letter]

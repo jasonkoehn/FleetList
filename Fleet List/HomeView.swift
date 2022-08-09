@@ -9,13 +9,13 @@ import SwiftUI
 
 struct HomeView: View {
     @State var showSettingsView = false
-    @State var aircraft: [Aircraft] = []
+    @State var aircraftByDate: [AircraftDate] = []
     var body: some View {
         NavigationView {
             List {
                 Section("Latest Deliveries") {
-                    if (aircraft.count >= 5) {
-                        ForEach(aircraft.prefix(upTo: 5), id: \.hex) { aircraft in
+                    if (aircraftByDate.count >= 5) {
+                        ForEach(aircraftByDate.prefix(upTo: 5), id: \.hex) { aircraft in
                             NavigationLink(destination: AircraftView(name: aircraft.airline, country: aircraft.country, type: aircraft.type, model: aircraft.model, registration: aircraft.registration, deliverydate: aircraft.delivery, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn, firstflight: aircraft.firstflight, productionSite: aircraft.site, config: aircraft.config, remarks: aircraft.remarks)) {
                                 HStack {
                                     Image(aircraft.airline)
@@ -95,9 +95,20 @@ struct HomeView: View {
         if let data = try? Data(contentsOf: fileUrl) {
             let decoder = PropertyListDecoder()
             if let response = try? decoder.decode([Aircraft].self, from: data) {
-                aircraft = response
-                aircraft.sort {
-                    $0.delivery > $1.delivery
+                aircraftByDate = []
+                for aircraft in response {
+                    let fmt = DateFormatter()
+                    fmt.locale = Locale(identifier: "en_US_POSIX")
+                    fmt.dateFormat = "MMM d, yyyy"
+                    
+                    let dt = fmt.date(from: aircraft.delivery)!
+                    
+                    fmt.dateFormat = "yyyy-MM-dd"
+                    let decodedDate = fmt.string(from: dt)
+                    aircraftByDate.append(AircraftDate(airline: aircraft.airline, type: aircraft.type, model: aircraft.model, registration: aircraft.registration, country: aircraft.country, firstflight: aircraft.firstflight, delivery: aircraft.delivery, hex: aircraft.hex, config: aircraft.config, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn, site: aircraft.site, remarks: aircraft.remarks, sortDate: decodedDate))
+                }
+                aircraftByDate.sort {
+                    $0.sortDate > $1.sortDate
                 }
             } else {
                 Task {
@@ -116,42 +127,3 @@ struct HomeView: View {
     }
 }
 
-struct RowView: View {
-    var body: some View {
-        ZStack {
-            Rectangle()
-                .foregroundColor(Color(.systemGray6))
-                .cornerRadius(12)
-                .padding(3)
-            HStack {
-                Spacer()
-                NavigationLink(destination: AirlineListView()) {
-                    Text("Airlines")
-                        .font(.system(size: 25))
-                        .bold()
-                        .foregroundColor(.black)
-                        .frame(width: 150, height: 80)
-                        .background(Color(.systemCyan))
-                        .cornerRadius(8)
-                }
-                Spacer()
-                NavigationLink(destination: CountriesListView()) {
-                    Text("By Country")
-                        .font(.system(size: 25))
-                        .bold()
-                        .foregroundColor(.black)
-                        .frame(width: 150, height: 80)
-                        .background(Color(.systemGreen))
-                        .cornerRadius(8)
-                }
-                Spacer()
-            }
-        }
-        .frame(maxWidth: 500, maxHeight: 120)
-        .background(Color(.systemGreen))
-        .cornerRadius(15)
-        .padding(.horizontal, 15)
-        .shadow(radius: 1)
-        
-    }
-}
