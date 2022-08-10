@@ -26,21 +26,18 @@ struct HomeView: View {
                                         Text(aircraft.registration)
                                             .font(.system(size: 23))
                                             .padding(0)
-                                            .foregroundColor(.black)
                                         Spacer()
                                     }.frame(width: 100)
                                     VStack(alignment: .leading) {
                                         Text(aircraft.model)
                                             .font(.system(size: 15))
                                             .padding(0)
-                                            .foregroundColor(.black)
                                         Text(aircraft.delivery)
                                             .font(.system(size: 15))
                                             .padding(0)
-                                            .foregroundColor(.black)
                                     }
                                 }
-                            }.listRowBackground(Color(.systemOrange))
+                            }.listRowBackground(Color("DarkGreen"))
                         }
                     }
                 }
