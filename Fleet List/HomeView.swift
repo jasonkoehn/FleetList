@@ -44,27 +44,24 @@ struct HomeView: View {
                 Section("Fleets") {
                     NavigationLink(destination: AirlineListView()) {
                         Text("Airline List")
-                            .foregroundColor(.black)
                             .font(.system(size: 27))
                             .bold()
                             .padding(4)
                     }
-                    .listRowBackground(Color(.systemTeal))
+                    .listRowBackground(Color("DarkTeal"))
                     NavigationLink(destination: CountriesListView()) {
                         Text("Airline By Country")
-                            .foregroundColor(.black)
                             .font(.system(size: 27))
                             .bold()
                             .padding(4)
                     }
-                    .listRowBackground(Color(.systemIndigo))
+                    .listRowBackground(Color("DarkIndigo"))
                 }
                 Section("Interesting Facts") {
                     NavigationLink(destination: BoeingCustomerCodesView()) {
                         Text("Boeing Customer Codes")
-                            .foregroundColor(.black)
                             .font(.system(size: 25))
-                    }.listRowBackground(Color.blue)
+                    }.listRowBackground(Color("DarkBlue"))
                 }
             }
             .listStyle(GroupedListStyle())
