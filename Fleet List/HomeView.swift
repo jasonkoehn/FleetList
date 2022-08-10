@@ -83,6 +83,16 @@ struct HomeView: View {
                     SettingsView()
                 }
             }
+            .refreshable {
+                Task {
+                    await loadAirlinesfromapi()
+                    saveAirlines()
+                    await loadAircraftfromapi()
+                    saveAircraft()
+                    loadAircraft()
+                    await loadUtilitiesfromapi()
+                }
+            }
         }
     }
     func loadAircraft() {

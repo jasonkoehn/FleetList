@@ -10,7 +10,7 @@ import SwiftUI
 struct BoeingCustomerCodesView: View {
     var body: some View {
         Text("Boeing Customer Codes")
-            .navigationTitle("Boeing Customer Codes")
+            .navigationBarTitle("Boeing Customer Codes", displayMode: .inline)
     }
 }
 
@@ -18,4 +18,10 @@ struct BoeingCustomerCodesView_Previews: PreviewProvider {
     static var previews: some View {
         BoeingCustomerCodesView()
     }
+}
+
+struct BoeingCustomerCodes: Codable {
+    var code: String
+    var customer: String
+    var aircraft: String
 }
