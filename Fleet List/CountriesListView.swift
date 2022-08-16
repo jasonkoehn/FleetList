@@ -60,8 +60,4 @@ struct CountriesListView: View {
     }
 }
 
-struct CountriesListView_Previews: PreviewProvider {
-    static var previews: some View {
-        CountriesListView()
-    }
-}
+
