@@ -10,27 +10,45 @@ import SwiftUI
 struct AirlineListView: View {
     @State var airlines: [Airline] = []
     @State var alphabet: [Letter] = []
+    @State private var searchText = ""
+    @State private var searching = false
     var body: some View {
         List {
-            ForEach(alphabet, id: \.letter) { alphabet in
-                Section(alphabet.letter) {
-                    ForEach(airlines, id: \.name) { airline in
-                        if airline.name.first?.uppercased() == alphabet.letter {
-                            NavigationLink(destination: AirlineView(name: airline.name, country: airline.country, website: airline.website, iata: airline.iata, icao: airline.icao, callsign: airline.callsign, fleetsize: airline.fleetsize, types: airline.types)) {
-                                HStack {
-                                    Image(airline.name)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 50)
-                                    Text(airline.name)
-                                        .font(.system(size: 23))
+            if searchText.isEmpty {
+                ForEach(alphabet, id: \.letter) { alphabet in
+                    Section(alphabet.letter) {
+                        ForEach(searchResults, id: \.name) { airline in
+                            if airline.name.first?.uppercased() == alphabet.letter {
+                                NavigationLink(destination: AirlineView(name: airline.name, country: airline.country, website: airline.website, iata: airline.iata, icao: airline.icao, callsign: airline.callsign, fleetsize: airline.fleetsize, types: airline.types)) {
+                                    HStack {
+                                        Image(airline.name)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 50)
+                                        Text(airline.name)
+                                            .font(.system(size: 23))
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }.frame(height: 30)
+            } else {
+                ForEach(searchResults, id: \.name) { airline in
+                    NavigationLink(destination: AirlineView(name: airline.name, country: airline.country, website: airline.website, iata: airline.iata, icao: airline.icao, callsign: airline.callsign, fleetsize: airline.fleetsize, types: airline.types)) {
+                        HStack {
+                            Image(airline.name)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 50)
+                            Text(airline.name)
+                                .font(.system(size: 23))
+                        }
+                    }
+                }
+            }
         }
+        .searchable(text: $searchText)
         .listStyle(PlainListStyle())
         .task {
             loadAirlines()
@@ -47,6 +65,13 @@ struct AirlineListView: View {
                 await loadUtilitiesfromapi()
                 loadLetters()
             }
+        }
+    }
+    var searchResults: [Airline] {
+        if searchText.isEmpty {
+            return airlines
+        } else {
+            return airlines.filter { $0.name.contains(searchText) }
         }
     }
     func loadAirlines() {
@@ -101,8 +126,4 @@ struct AirlineListView: View {
     }
 }
 
-struct AirlineListView_Previews: PreviewProvider {
-    static var previews: some View {
-        AirlineListView()
-    }
-}
+

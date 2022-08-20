@@ -10,9 +10,10 @@ import SwiftUI
 struct AirlinesByCountryView: View {
     @State var airlines: [Airline] = []
     var countryName: String
+    @State private var searchText = ""
     var body: some View {
         List {
-            ForEach(airlines, id: \.name) { airline in
+            ForEach(searchResults, id: \.name) { airline in
                 if airline.country == countryName {
                     NavigationLink(destination: AirlineView(name: airline.name, country: airline.country, website: airline.website, iata: airline.iata, icao: airline.icao, callsign: airline.callsign, fleetsize: airline.fleetsize, types: airline.types)) {
                         HStack {
@@ -25,8 +26,9 @@ struct AirlinesByCountryView: View {
                         }
                     }
                 }
-            }.frame(height: 30)
+            }
         }
+        .searchable(text: $searchText)
         .listStyle(PlainListStyle())
         .task {
             loadAirlines()
@@ -40,6 +42,13 @@ struct AirlinesByCountryView: View {
                 await loadAircraftfromapi()
                 saveAircraft()
             }
+        }
+    }
+    var searchResults: [Airline] {
+        if searchText.isEmpty {
+            return airlines
+        } else {
+            return airlines.filter { $0.name.contains(searchText) }
         }
     }
     func loadAirlines() {

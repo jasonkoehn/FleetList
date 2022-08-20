@@ -111,11 +111,12 @@ struct AllFleetView: View {
     @State var aircraft: [Aircraft] = []
     var name: String
     var types: [Types] = []
+    @State private var searchText = ""
     var body: some View {
         List {
             ForEach(types, id: \.type) { types in
                 Section(types.model) {
-                    ForEach(aircraft, id: \.hex) { aircraft in
+                    ForEach(searchResults, id: \.hex) { aircraft in
                         if aircraft.airline == name && aircraft.type == types.type {
                             NavigationLink(destination: {AircraftView(name: name, country: aircraft.country, type: aircraft.type, model: aircraft.model, registration: aircraft.registration, deliverydate: aircraft.delivery, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn, firstflight: aircraft.firstflight, productionSite: aircraft.site, config: aircraft.config, remarks: aircraft.remarks)}) {
                                 HStack {
@@ -135,8 +136,9 @@ struct AllFleetView: View {
                         }
                     }
                 }
-            }.frame(height: 30)
+            }
         }
+        .searchable(text: $searchText)
         .listStyle(PlainListStyle())
         .navigationBarTitle("Aircraft", displayMode: .inline)
         .task {
@@ -148,6 +150,13 @@ struct AllFleetView: View {
                 saveAircraft()
                 loadAircraft()
             }
+        }
+    }
+    var searchResults: [Aircraft] {
+        if searchText.isEmpty {
+            return aircraft
+        } else {
+            return aircraft.filter { $0.registration.contains(searchText) }
         }
     }
     func loadAircraft() {
@@ -183,9 +192,10 @@ struct TypesFleetView: View {
     var name: String
     var type: String
     var model: String
+    @State private var searchText = ""
     var body: some View {
         List {
-            ForEach(aircraft, id: \.hex) { aircraft in
+            ForEach(searchResults, id: \.hex) { aircraft in
                 if aircraft.airline == name && aircraft.type == type {
                     NavigationLink(destination: {AircraftView(name: name, country: aircraft.country, type: aircraft.type, model: aircraft.model, registration: aircraft.registration, deliverydate: aircraft.delivery, hex: aircraft.hex, msn: aircraft.msn, ln: aircraft.ln, fn: aircraft.fn, firstflight: aircraft.firstflight, productionSite: aircraft.site, config: aircraft.config, remarks: aircraft.remarks)}) {
                         HStack {
@@ -203,8 +213,9 @@ struct TypesFleetView: View {
                         }
                     }
                 }
-            }.frame(height: 30)
+            }
         }
+        .searchable(text: $searchText)
         .listStyle(PlainListStyle())
         .navigationBarTitle(model, displayMode: .inline)
         .task {
@@ -216,6 +227,13 @@ struct TypesFleetView: View {
                 saveAircraft()
                 loadAircraft()
             }
+        }
+    }
+    var searchResults: [Aircraft] {
+        if searchText.isEmpty {
+            return aircraft
+        } else {
+            return aircraft.filter { $0.registration.contains(searchText) }
         }
     }
     func loadAircraft() {

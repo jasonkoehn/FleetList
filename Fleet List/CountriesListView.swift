@@ -9,9 +9,10 @@ import SwiftUI
 
 struct CountriesListView: View {
     @State var countries: [Country] = []
+    @State private var searchText = ""
     var body: some View {
         List {
-            ForEach(countries, id: \.name) { country in
+            ForEach(searchResults, id: \.name) { country in
                 NavigationLink(destination: {AirlinesByCountryView(countryName: country.name)}) {
                     HStack {
                         Image(country.name)
@@ -24,6 +25,7 @@ struct CountriesListView: View {
                 }
             }.frame(height: 30)
         }
+        .searchable(text: $searchText)
         .listStyle(PlainListStyle())
         .navigationTitle("Countries")
         .task {
@@ -32,6 +34,13 @@ struct CountriesListView: View {
         .refreshable {
             await loadUtilitiesfromapi()
             loadCountries()
+        }
+    }
+    var searchResults: [Country] {
+        if searchText.isEmpty {
+            return countries
+        } else {
+            return countries.filter { $0.name.contains(searchText) }
         }
     }
     func loadCountries() {
