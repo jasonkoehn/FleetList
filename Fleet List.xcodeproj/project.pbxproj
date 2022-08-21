@@ -109,6 +109,8 @@
 			dependencies = (
 			);
 			name = "Fleet List";
+			packageProductDependencies = (
+			);
 			productName = "Fleet List";
 			productReference = 87782073286C9E9E00614B24 /* Fleet List.app */;
 			productType = "com.apple.product-type.application";
@@ -137,6 +139,8 @@
 				Base,
 			);
 			mainGroup = 8778206A286C9E9E00614B24;
+			packageReferences = (
+			);
 			productRefGroup = 87782074286C9E9E00614B24 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
